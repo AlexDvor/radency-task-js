@@ -4,6 +4,7 @@
   justify-content: space-between;
   padding: 0px 20px 0px 20px;
   margin-top: 50px;
+  border-radius: 5px;
 }
 
 .list-menu {
@@ -27,4 +28,13 @@
   &:not(:last-child) {
     margin-right: 10px;
   }
+}
+
+.button-list__button {
+  border: none;
+  background-color: transparent;
+}
+
+.fa-solid:hover {
+  color: #063746;
 }
