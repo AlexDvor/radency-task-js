@@ -1,0 +1,30 @@
+.header-wrapper {
+  display: flex;
+  outline: 1px solid white;
+  justify-content: space-between;
+  padding: 0px 20px 0px 20px;
+  margin-top: 50px;
+}
+
+.list-menu {
+  list-style: none;
+  display: flex;
+  padding: 0px;
+}
+
+.list-menu__item {
+  &:not(:first-child) {
+    margin-left: 80px;
+  }
+}
+
+.button-list {
+  list-style: none;
+  display: flex;
+}
+
+.button-list__item {
+  &:not(:last-child) {
+    margin-right: 10px;
+  }
+}
