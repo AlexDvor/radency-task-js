@@ -42,6 +42,7 @@ selectWrapperElement.classList.add('select');
 
 const wrapElement = document.createElement('div');
 wrapElement.classList.add('select-styled');
+wrapElement.textContent = `${selectRef.children[0].textContent}`;
 
 const listElement = document.createElement('ul');
 listElement.classList.add('select-options');
@@ -53,9 +54,8 @@ selectRef.classList.add('select-hidden');
 formRef.append(selectWrapperElement);
 
 for (let i = 0; i < selectRef.children.length; i++) {
-  console.log(selectRef.children[i].value);
   const itemEl = document.createElement('li');
-  itemEl.textContent = selectRef.children[i].value;
+  itemEl.textContent = selectRef.children[i].textContent;
   itemEl.setAttribute('rel', `${selectRef.children[i].value}`);
   listElement.append(itemEl);
 }
@@ -67,8 +67,14 @@ const selectOptionsRef = document.querySelector('.select-options');
 selectStyledRef.addEventListener('click', () => {
   selectOptionsRef.classList.toggle('js-open-list');
 });
-const x = document.querySelector('.select-styled::after');
-console.log(x);
+
+selectOptionsRef.addEventListener('click', e => {
+  wrapElement.textContent = e.target.textContent;
+  selectOptionsRef.classList.toggle('js-open-list');
+});
+
+const parseSelectList = () => {};
+
 // ..............................
 // $('select').each(function () {
 //   var $this = $(this),

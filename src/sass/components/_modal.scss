@@ -47,6 +47,7 @@
 .lightbox.is-open .lightbox-content {
   transform: scale(1);
 }
+
 //////////////
 
 $background: #e74c3c;
@@ -79,7 +80,7 @@ $select-height: 40px;
   padding: 8px 15px;
   // @include transition(all 0.2s ease-in);
   &:after {
-    content: attr(data-content);
+    content: '';
     width: 0;
     height: 0;
     border: 7px solid transparent;
