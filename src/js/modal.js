@@ -1,23 +1,17 @@
-const creatButtonItemRef = document.querySelector('[data-action="create-item"]');
-const modalRef = document.querySelector('.lightbox');
-const exitIcon = document.querySelector('.lightbox-conten___icon-exit');
-const overlayRef = document.querySelector('.lightbox-content');
-//
-const selectRef = document.getElementById('mounth');
-const formRef = document.querySelector('.form');
+import ref from './ref';
 
-creatButtonItemRef.addEventListener('click', createCardItem);
-exitIcon.addEventListener('click', onCloseModal);
-overlayRef.addEventListener('click', onBackdropClick);
-modalRef.addEventListener('click', onBackdropClick);
+ref.creatButtonItem.addEventListener('click', createCardItem);
+ref.exitIcon.addEventListener('click', onCloseModal);
+ref.overlay.addEventListener('click', onBackdropClick);
+ref.modal.addEventListener('click', onBackdropClick);
 
 function createCardItem(e) {
-  modalRef.classList.add('is-open');
+  ref.modal.classList.add('is-open');
 }
 
 function onCloseModal(e) {
   window.removeEventListener('keydown', onKeyDownClick);
-  modalRef.classList.remove('is-open');
+  ref.modal.classList.remove('is-open');
   // changesAttributeImage('', '');
 }
 
@@ -42,25 +36,22 @@ selectWrapperElement.classList.add('select');
 
 const wrapElement = document.createElement('div');
 wrapElement.classList.add('select-styled');
-wrapElement.textContent = `${selectRef.children[0].textContent}`;
+wrapElement.textContent = `${ref.selectContent.children[0].textContent}`;
 
 const listElement = document.createElement('ul');
 listElement.classList.add('select-options');
 
-const itemEl = document.createElement('li');
+selectWrapperElement.append(ref.selectContent, wrapElement, listElement);
+ref.selectContent.classList.add('select-hidden');
+ref.form.append(selectWrapperElement);
 
-selectWrapperElement.append(selectRef, wrapElement, listElement);
-selectRef.classList.add('select-hidden');
-formRef.append(selectWrapperElement);
-
-for (let i = 0; i < selectRef.children.length; i++) {
+for (let i = 0; i < ref.selectContent.children.length; i++) {
   const itemEl = document.createElement('li');
-  itemEl.textContent = selectRef.children[i].textContent;
-  itemEl.setAttribute('rel', `${selectRef.children[i].value}`);
+  itemEl.textContent = ref.selectContent.children[i].textContent;
+  itemEl.setAttribute('rel', `${ref.selectContent.children[i].value}`);
   listElement.append(itemEl);
 }
 
-// /////////////////////////
 const selectStyledRef = document.querySelector('.select-styled');
 const selectOptionsRef = document.querySelector('.select-options');
 
@@ -72,8 +63,6 @@ selectOptionsRef.addEventListener('click', e => {
   wrapElement.textContent = e.target.textContent;
   selectOptionsRef.classList.toggle('js-open-list');
 });
-
-const parseSelectList = () => {};
 
 // ..............................
 // $('select').each(function () {
