@@ -12,7 +12,6 @@ function createCardItem(e) {
 function onCloseModal(e) {
   window.removeEventListener('keydown', onKeyDownClick);
   ref.modal.classList.remove('is-open');
-  // changesAttributeImage('', '');
 }
 
 function onKeyDownClick(e) {
@@ -22,45 +21,68 @@ function onKeyDownClick(e) {
 }
 
 function onBackdropClick(e) {
-  // console.log('e.currentTarget', e);
-  // console.log('e.target', e.target);
-  // if (e.currentTarget === e.target) {
-  //   onCloseModal();
-  // }
+  if (e.currentTarget === e.target) {
+    onCloseModal();
+  }
 }
 
-//////////////////////////////////////////////
+createSelectList();
 
-const selectWrapperElement = document.createElement('div');
-selectWrapperElement.classList.add('select');
+function createSelectList() {
+  const selectWrapperElement = document.createElement('div');
+  selectWrapperElement.classList.add('select');
 
-const wrapElement = document.createElement('div');
-wrapElement.classList.add('select-styled');
-wrapElement.textContent = `${ref.selectContent.children[0].textContent}`;
+  const wrapElement = document.createElement('div');
+  wrapElement.classList.add('select-styled');
+  wrapElement.textContent = `${ref.selectContent.children[0].textContent}`;
 
-const listElement = document.createElement('ul');
-listElement.classList.add('select-options');
+  const listElement = document.createElement('ul');
+  listElement.classList.add('select-options');
 
-selectWrapperElement.append(ref.selectContent, wrapElement, listElement);
-ref.selectContent.classList.add('select-hidden');
-ref.form.append(selectWrapperElement);
+  selectWrapperElement.append(ref.selectContent, wrapElement, listElement);
+  ref.selectContent.classList.add('select-hidden');
+  ref.form.append(selectWrapperElement);
 
-for (let i = 0; i < ref.selectContent.children.length; i++) {
-  const itemEl = document.createElement('li');
-  itemEl.textContent = ref.selectContent.children[i].textContent;
-  itemEl.setAttribute('rel', `${ref.selectContent.children[i].value}`);
-  listElement.append(itemEl);
+  for (let i = 0; i < ref.selectContent.children.length; i++) {
+    const itemEl = document.createElement('li');
+    itemEl.textContent = ref.selectContent.children[i].textContent;
+    itemEl.setAttribute('rel', `${ref.selectContent.children[i].value}`);
+    listElement.append(itemEl);
+  }
 }
+
+// const selectWrapperElement = document.createElement('div');
+// selectWrapperElement.classList.add('select');
+
+// const wrapElement = document.createElement('div');
+// wrapElement.classList.add('select-styled');
+// wrapElement.textContent = `${ref.selectContent.children[0].textContent}`;
+
+// const listElement = document.createElement('ul');
+// listElement.classList.add('select-options');
+
+// selectWrapperElement.append(ref.selectContent, wrapElement, listElement);
+// ref.selectContent.classList.add('select-hidden');
+// ref.form.append(selectWrapperElement);
+
+// for (let i = 0; i < ref.selectContent.children.length; i++) {
+//   const itemEl = document.createElement('li');
+//   itemEl.textContent = ref.selectContent.children[i].textContent;
+//   itemEl.setAttribute('rel', `${ref.selectContent.children[i].value}`);
+//   listElement.append(itemEl);
+// }
 
 const selectStyledRef = document.querySelector('.select-styled');
 const selectOptionsRef = document.querySelector('.select-options');
 
 selectStyledRef.addEventListener('click', () => {
   selectOptionsRef.classList.toggle('js-open-list');
+  selectStyledRef.classList.toggle('active');
 });
 
 selectOptionsRef.addEventListener('click', e => {
-  wrapElement.textContent = e.target.textContent;
+  selectStyledRef.textContent = e.target.textContent;
+  selectStyledRef.classList.toggle('active');
   selectOptionsRef.classList.toggle('js-open-list');
 });
 

@@ -72,6 +72,8 @@ $select-height: 40px;
 }
 .select-styled {
   position: absolute;
+  display: flex;
+  align-items: center;
   top: 0;
   right: 0;
   bottom: 0;
