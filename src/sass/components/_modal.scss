@@ -1,7 +1,10 @@
-:root {
-  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  --animation-duration: 250ms;
-}
+$background: #e74c3c;
+$select-color: #fff;
+$select-background: #1b9bc5;
+$select-width: 220px;
+$select-height: 40px;
+$animation-duration: 250ms;
+$timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
 .lightbox {
   display: flex;
@@ -14,7 +17,7 @@
   height: 100vh;
   opacity: 0;
   pointer-events: none;
-  transition: opacity var(--animation-duration) var(--timing-function);
+  transition: opacity $animation-duration $timing-function;
 }
 
 .lightbox.is-open {
@@ -28,7 +31,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(44, 44, 44, 0.8);
 }
 
 .lightbox-content__wrapper-icon {
@@ -39,7 +42,7 @@
 .lightbox-content {
   padding: 20px;
   transform: scale(0.95);
-  transition: transform var(--animation-duration) var(--timing-function);
+  transition: transform $animation-duration $timing-function;
   outline: 1px solid white;
   border-radius: 5%;
 }
@@ -48,19 +51,12 @@
   transform: scale(1);
 }
 
-//////////////
-
-$background: #e74c3c;
-$select-color: #fff;
-$select-background: #c0392b;
-$select-width: 220px;
-$select-height: 40px;
-
 .select-hidden {
   display: none;
   visibility: hidden;
   padding-right: 10px;
 }
+
 .select {
   cursor: pointer;
   display: inline-block;
@@ -73,6 +69,7 @@ $select-height: 40px;
     margin-right: 30px;
   }
 }
+
 .select-styled {
   position: absolute;
   display: flex;
@@ -83,7 +80,7 @@ $select-height: 40px;
   left: 0;
   background-color: $select-background;
   padding: 8px 15px;
-  // @include transition(all 0.2s ease-in);
+  transition: all 0.2s ease-in;
   &:after {
     content: '';
     width: 0;
@@ -121,9 +118,10 @@ $select-height: 40px;
   li {
     margin: 0;
     padding: 12px 0;
-    text-indent: 15px;
+    text-indent: 7px;
     border-top: 1px solid darken($select-background, 10);
-    // @include transition(all 0.15s ease-in);
+
+    transition: all 0.15s ease-in;
     &:hover,
     &.is-selected {
       color: $select-background;
@@ -137,4 +135,13 @@ $select-height: 40px;
 
 .js-open-list {
   display: block;
+}
+
+.select-options__item {
+}
+
+.shopping-list__wrapper-icon {
+  font-size: 18px;
+  color: white;
+  margin-right: 10px;
 }

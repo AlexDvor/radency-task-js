@@ -8,27 +8,45 @@
       </span>
     </div>
 
-    <h1>TEst</h1>
+    <h1>Create to do list</h1>
+    <i class="fa-solid fa-bullseye-arrow"></i>
     <form class="form">
-      <select id="mounth">
-        <option value="hide">-- Month --</option>
-        <option value="january">January</option>
-        <option value="february">February</option>
-        <option value="march">March</option>
-        <option value="april">April</option>
-        <option value="may">May</option>
-        <option value="june">June</option>
-      </select>
-
-      <select id="year">
-        <option value="hide">-- Year --</option>
-        <option value="2010">2010</option>
-        <option value="2011">2011</option>
-        <option value="2012">2012</option>
-        <option value="2013">2013</option>
-        <option value="2014">2014</option>
-        <option value="2015">2015</option>
-      </select>
+      <div class="select">
+        <select id="category">
+          <option value="hide">--Category--</option>
+          <option value="shopping list">Shopping List</option>
+          <option value="new feature">New Feature</option>
+          <option value="remind">Remind</option>
+          <option value="goals">Goals</option>
+        </select>
+        <div class="select-styled">--Category--</div>
+        <ul class="select-options">
+          <li rel="hide">-- Category --</li>
+          <li rel="shopping list">
+            <span class="shopping-list__wrapper-icon">
+              <i class="fa-solid fa-cart-shopping"></i> </span
+            >Shopping List
+          </li>
+          <li rel="new feature">
+            <span class="shopping-list__wrapper-icon">
+              <i class="fa-solid fa-calendar-plus"></i>
+            </span>
+            New Feature
+          </li>
+          <li rel="remind">
+            <span class="shopping-list__wrapper-icon">
+              <i class="fa-solid fa-bell"></i>
+            </span>
+            Remind
+          </li>
+          <li rel="goals">
+            <span class="shopping-list__wrapper-icon">
+              <i class="fa-solid fa-bullseye"></i>
+            </span>
+            Goals
+          </li>
+        </ul>
+      </div>
     </form>
   </div>
 
