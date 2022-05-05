@@ -1,18 +1,17 @@
-.card-wrapper {
+.card {
   display: flex;
-  // justify-content: space-between;
   outline: 1px solid white;
   padding: 20px;
   margin-top: 20px;
   align-items: center;
 }
 
-.wrapper-icon {
+.category-image {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.icon-background {
+.category-image__background {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,21 +20,31 @@
   width: 40px;
   height: 40px;
 }
-.card-name {
+.category-image__icon {
+  font-size: 18px;
+  color: white;
+}
+
+.category-image__title {
   margin-left: 10px;
 }
-.card-created {
-  margin-left: 48px;
+
+.field-cards {
+  display: flex;
 }
-.card-category {
-  margin-left: 155px;
+
+.field-cards__list {
+  display: flex;
+  list-style: none;
+  margin-left: 20px;
 }
-.card-content {
-  margin-left: 140px;
+
+.field-cards__item {
+  &:not(:first-child) {
+    margin-left: 160px;
+  }
 }
-.card-data {
-  margin-left: 75px;
-}
+
 .card-button__list {
   display: flex;
   list-style: none;
@@ -52,7 +61,7 @@
   cursor: pointer;
 }
 
-.card-button__wrapper-icon {
+.card-button__icon {
   font-size: 18px;
   color: white;
 }

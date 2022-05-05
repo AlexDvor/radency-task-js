@@ -1,4 +1,4 @@
-.header-wrapper {
+.header {
   display: flex;
   outline: 1px solid white;
   justify-content: space-between;
@@ -15,7 +15,7 @@
 
 .list-menu__item {
   &:not(:first-child) {
-    margin-left: 130px;
+    margin-left: 160px;
   }
 }
 
@@ -34,4 +34,9 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
+}
+
+.button-list__icon {
+  font-size: 18px;
+  color: white;
 }
