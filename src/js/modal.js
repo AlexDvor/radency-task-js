@@ -38,19 +38,19 @@ function resetSelect() {
 function onClickSelectOptions(e) {
   const selectValue = e.target.textContent;
   const iconRef = e.target.children[0].lastElementChild.className;
-  const wrapperIcon = `<span class="shopping-list__wrapper-icon"> <i class='${iconRef}'></i></span >`;
+  const wrapperIcon = `<span class="select-options__icon"> <i class='${iconRef}'></i></span >`;
   ref.selectContent.textContent = selectValue;
   // console.log('selectValue', selectValue);
   // e.path[3].elements[0].value = '1111';
   console.log(e.path[3].elements[0].value);
   ref.selectContent.insertAdjacentHTML('afterBegin', wrapperIcon);
   ref.selectContent.classList.toggle('active');
-  ref.selectOptions.classList.toggle('js-open-list');
+  ref.selectOptions.classList.toggle('select-options--open');
 }
 
 function onClickSelectContent() {
   ref.selectContent.classList.toggle('active');
-  ref.selectOptions.classList.toggle('js-open-list');
+  ref.selectOptions.classList.toggle('select-options--open');
 }
 
 function onFormSubmit(e) {
@@ -99,15 +99,15 @@ function onFormSubmit(e) {
 // selectStyledRef.forEach(element =>
 //   element.addEventListener('click', e => {
 //     selectStyledRef.forEach(item => {
-//       if (item.nextElementSibling.classList.contains('js-open-list')) {
-//         item.nextElementSibling.classList.remove('js-open-list');
+//       if (item.nextElementSibling.classList.contains('select-options--open')) {
+//         item.nextElementSibling.classList.remove('select-options--open');
 //       }
 //       if (item.classList.contains('active')) {
 //         item.classList.remove('active');
 //       }
 //     });
 //     element.classList.toggle('active');
-//     element.nextElementSibling.classList.toggle('js-open-list');
+//     element.nextElementSibling.classList.toggle('select-options--open');
 //   }),
 // );
 
@@ -118,7 +118,7 @@ function onFormSubmit(e) {
 //     const value = e.target.textContent;
 //     e.path[2].children[1].textContent = value;
 //     e.path[2].children[1].classList.remove('active');
-//     e.path[2].children[2].classList.remove('js-open-list');
+//     e.path[2].children[2].classList.remove('select-options--open');
 //   }),
 // );
 
@@ -127,12 +127,12 @@ function onFormSubmit(e) {
 // const selectOptionsRef = document.querySelector('.select-options');
 
 // selectStyledRef.addEventListener('click', () => {
-//   selectOptionsRef.classList.toggle('js-open-list');
+//   selectOptionsRef.classList.toggle('select-options--open');
 //   selectStyledRef.classList.toggle('active');
 // });
 
 // selectOptionsRef.addEventListener('click', e => {
 //   selectStyledRef.textContent = e.target.textContent;
 //   selectStyledRef.classList.toggle('active');
-//   selectOptionsRef.classList.toggle('js-open-list');
+//   selectOptionsRef.classList.toggle('select-options--open');
 // });

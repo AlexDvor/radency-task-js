@@ -12,7 +12,7 @@
 
     <form class="form" autocomplete="off" novalidate>
       <div class="select">
-        <select id="category" name="category">
+        <select id="category" name="category" class="select--hiden">
           <option value="hide">--Category--</option>
           <option value="shopping list">Shopping List</option>
           <option value="new feature">New Feature</option>
@@ -20,39 +20,39 @@
           <option value="goals">Goals</option>
         </select>
         <div class="select-styled">--Category--</div>
+
         <ul class="select-options">
           <li rel="hide">-- Category --</li>
           <li rel="shopping list">
-            <span class="shopping-list__wrapper-icon">
-              <i class="fa-solid fa-cart-shopping"></i> </span
+            <span class="select-options__icon"> <i class="fa-solid fa-cart-shopping"></i> </span
             >Shopping List
           </li>
           <li rel="new feature">
-            <span class="shopping-list__wrapper-icon">
+            <span class="select-options__icon">
               <i class="fa-solid fa-calendar-plus"></i>
             </span>
             New Feature
           </li>
           <li rel="remind">
-            <span class="shopping-list__wrapper-icon">
+            <span class="select-options__icon">
               <i class="fa-solid fa-bell"></i>
             </span>
             Remind
           </li>
           <li rel="goals">
-            <span class="shopping-list__wrapper-icon">
+            <span class="select-options__icon">
               <i class="fa-solid fa-bullseye"></i>
             </span>
             Goals
           </li>
         </ul>
       </div>
-      <label for="objective">Objective </label>
+
+      <label for="objective">Objective</label>
       <input class="form-objective" name="objective" type="text" id="objective" />
       <label for="content">Content</label>
       <textarea class="form-content" name="content" id="content" rows="1"></textarea>
-
-      <button class="submit-button" type="submit">Create</button>
+      <button class="form-submit-button" type="submit">Create</button>
     </form>
   </div>
 

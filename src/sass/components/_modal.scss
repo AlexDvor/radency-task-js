@@ -7,6 +7,10 @@ $select-height: 40px;
 $animation-duration: 250ms;
 $timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
+label {
+  margin-bottom: 10px;
+}
+
 .lightbox {
   display: flex;
   align-items: center;
@@ -61,8 +65,10 @@ $timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 .lightbox-title {
   text-align: center;
 }
+
 /////////
-.select-hidden {
+
+.select--hidden {
   display: none;
   visibility: hidden;
   padding-right: 10px;
@@ -146,14 +152,14 @@ $timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
-.js-open-list {
+.select-options--open {
   display: block;
 }
 
 .select-options__item {
 }
 
-.shopping-list__wrapper-icon {
+.select-options__icon {
   font-size: 18px;
   color: white;
   margin-right: 10px;
@@ -183,11 +189,7 @@ $timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   margin-bottom: 20px;
 }
 
-label {
-  margin-bottom: 10px;
-}
-
-.submit-button {
+.form-submit-button {
   height: 40px;
   border: none;
   background-color: $input-background;
