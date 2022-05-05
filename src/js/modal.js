@@ -5,6 +5,7 @@ ref.exitIcon.addEventListener('click', onCloseModal);
 ref.overlay.addEventListener('click', onBackdropClick);
 ref.selectOptions.addEventListener('click', onClickSelectOptions);
 ref.selectContent.addEventListener('click', onClickSelectContent);
+ref.form.addEventListener('submit', onFormSubmit);
 
 function openCreateModal(e) {
   window.addEventListener('keydown', onKeyDownClick);
@@ -35,10 +36,13 @@ function resetSelect() {
 }
 
 function onClickSelectOptions(e) {
-  const value = e.target.textContent;
+  const selectValue = e.target.textContent;
   const iconRef = e.target.children[0].lastElementChild.className;
   const wrapperIcon = `<span class="shopping-list__wrapper-icon"> <i class='${iconRef}'></i></span >`;
-  ref.selectContent.textContent = value;
+  ref.selectContent.textContent = selectValue;
+  // console.log('selectValue', selectValue);
+  // e.path[3].elements[0].value = '1111';
+  console.log(e.path[3].elements[0].value);
   ref.selectContent.insertAdjacentHTML('afterBegin', wrapperIcon);
   ref.selectContent.classList.toggle('active');
   ref.selectOptions.classList.toggle('js-open-list');
@@ -47,6 +51,17 @@ function onClickSelectOptions(e) {
 function onClickSelectContent() {
   ref.selectContent.classList.toggle('active');
   ref.selectOptions.classList.toggle('js-open-list');
+}
+
+function onFormSubmit(e) {
+  e.preventDefault();
+  const data = {};
+  // console.dir(e.currentTarget.elements.select.value);
+  const formData = new FormData(e.currentTarget);
+  formData.forEach((value, key) => {
+    data[key] = value;
+  });
+  console.log('data', data);
 }
 // --------------------------------------------------------------
 // const formRef = ref.form.querySelectorAll('select');

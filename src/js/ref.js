@@ -3,7 +3,7 @@ export default {
   modal: document.querySelector('.lightbox'),
   exitIcon: document.querySelector('.lightbox-conten___icon-exit'),
   overlay: document.querySelector('.lightbox__overlay'),
-  /////
   selectContent: document.querySelector('.select-styled'),
   selectOptions: document.querySelector('.select-options'),
+  form: document.querySelector('.form'),
 };

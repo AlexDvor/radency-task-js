@@ -1,6 +1,7 @@
 $background: #e74c3c;
 $select-color: #fff;
 $select-background: #1b9bc5;
+$input-background: #1b9bc5;
 $select-width: 220px;
 $select-height: 40px;
 $animation-duration: 250ms;
@@ -34,21 +35,26 @@ $timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   background-color: rgba(44, 44, 44, 0.8);
 }
 
-.lightbox-content__wrapper-icon {
-  display: flex;
-  justify-content: end;
-}
-
 .lightbox-content {
-  padding: 20px;
+  position: relative;
+  padding: 50px;
   transform: scale(0.95);
   transition: transform $animation-duration $timing-function;
   outline: 1px solid white;
-  border-radius: 5%;
+}
+
+.lightbox-content__wrapper-icon {
+  position: absolute;
+  top: 12px;
+  right: 16px;
 }
 
 .lightbox.is-open .lightbox-content {
   transform: scale(1);
+}
+
+.lightbox-title {
+  text-align: center;
 }
 
 .select-hidden {
@@ -63,11 +69,13 @@ $timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   font-size: 16px;
   color: $select-color;
-  width: $select-width;
+  // width: $select-width;
   height: $select-height;
-  &:not(:last-child) {
-    margin-right: 30px;
-  }
+  // &:not(:last-child) {
+  //   margin-right: 30px;
+  // }
+
+  margin-bottom: 20px;
 }
 
 .select-styled {
@@ -144,4 +152,39 @@ $timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   font-size: 18px;
   color: white;
   margin-right: 10px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-objective {
+  margin-bottom: 20px;
+  height: 40px;
+  background-color: $input-background;
+  border: none;
+  color: white;
+  padding: 10px;
+}
+
+.form-content {
+  height: 160px;
+  background-color: $input-background;
+  border: none;
+  color: white;
+  padding: 10px;
+  resize: none;
+  margin-bottom: 20px;
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+.submit-button {
+  height: 40px;
+  border: none;
+  background-color: $input-background;
+  color: white;
 }
