@@ -9,12 +9,12 @@ ref.form.addEventListener('submit', onFormSubmit);
 
 function openCreateModal(e) {
   window.addEventListener('keydown', onKeyDownClick);
-  ref.modal.classList.add('is-open');
+  ref.modal.classList.add('lightbox--open');
 }
 
 function onCloseModal(e) {
   window.removeEventListener('keydown', onKeyDownClick);
-  ref.modal.classList.remove('is-open');
+  ref.modal.classList.remove('lightbox--open');
   resetSelect();
 }
 

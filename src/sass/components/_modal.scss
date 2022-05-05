@@ -21,7 +21,7 @@ $timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition: opacity $animation-duration $timing-function;
 }
 
-.lightbox.is-open {
+.lightbox--open {
   opacity: 1;
   pointer-events: initial;
 }
@@ -49,14 +49,19 @@ $timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   right: 16px;
 }
 
-.lightbox.is-open .lightbox-content {
+.lightbox-content___icon-exit {
+  font-size: 20px;
+  color: white;
+}
+
+.lightbox.lightbox--open .lightbox-content {
   transform: scale(1);
 }
 
 .lightbox-title {
   text-align: center;
 }
-
+/////////
 .select-hidden {
   display: none;
   visibility: hidden;
