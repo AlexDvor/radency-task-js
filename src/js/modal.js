@@ -33,16 +33,16 @@ function onBackdropClick(e) {
 function resetSelect() {
   const defaultValue = ref.selectOptions.children[0].textContent;
   ref.selectContent.textContent = defaultValue;
+  ref.selectOptions.classList.remove('select-options--open');
 }
 
 function onClickSelectOptions(e) {
   const selectValue = e.target.textContent;
+  const attributeValue = e.target.attributes.rel.value;
   const iconRef = e.target.children[0].lastElementChild.className;
   const wrapperIcon = `<span class="select-options__icon"> <i class='${iconRef}'></i></span >`;
   ref.selectContent.textContent = selectValue;
-  // console.log('selectValue', selectValue);
-  // e.path[3].elements[0].value = '1111';
-  console.log(e.path[3].elements[0].value);
+  ref.selectField.options[ref.selectField.selectedIndex].value = attributeValue;
   ref.selectContent.insertAdjacentHTML('afterBegin', wrapperIcon);
   ref.selectContent.classList.toggle('active');
   ref.selectOptions.classList.toggle('select-options--open');
@@ -63,6 +63,15 @@ function onFormSubmit(e) {
   });
   console.log('data', data);
 }
+
+// const s = document.querySelector('.select-field-a');
+// // console.log('s', s);
+
+// s.addEventListener('click', e => {
+//   console.log(s.options[s.selectedIndex].value);
+//   // const option = (s.options[s.selectedIndex].value = 1111);
+// });
+
 // --------------------------------------------------------------
 // const formRef = ref.form.querySelectorAll('select');
 

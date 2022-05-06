@@ -5,5 +5,6 @@ export default {
   overlay: document.querySelector('.lightbox__overlay'),
   selectContent: document.querySelector('.select-styled'),
   selectOptions: document.querySelector('.select-options'),
+  selectField: document.querySelector('.select-field'),
   form: document.querySelector('.form'),
 };
