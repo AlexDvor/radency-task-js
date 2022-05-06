@@ -56,7 +56,6 @@ function onClickSelectContent() {
 function onFormSubmit(e) {
   e.preventDefault();
   const data = {};
-  // console.dir(e.currentTarget.elements.select.value);
   const formData = new FormData(e.currentTarget);
   formData.forEach((value, key) => {
     data[key] = value;
