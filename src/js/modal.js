@@ -1,4 +1,9 @@
 import ref from './ref';
+import TodoItems from './maker-todo-item';
+import { v4 as uuidv4 } from 'uuid';
+
+const todoData = new TodoItems();
+todoData.getTodoListFromLS();
 
 ref.creatButtonItem.addEventListener('click', openCreateModal);
 ref.exitIcon.addEventListener('click', onCloseModal);
@@ -55,12 +60,19 @@ function onClickSelectContent() {
 
 function onFormSubmit(e) {
   e.preventDefault();
-  const data = {};
-  const formData = new FormData(e.currentTarget);
-  formData.forEach((value, key) => {
-    data[key] = value;
-  });
-  console.log('data', data);
+  const formData = e.currentTarget.elements;
+  const category = formData.category.value;
+  const content = formData.content.value;
+  const objective = formData.objective.value;
+  const id = uuidv4().slice(0, 6);
+  todoData.addTodoItem({ id, category, content, objective });
+  // console.log(todoData.getTodoData());
+  // const contentValude = formData.content.value;
+  // const data = {};
+  // const formData = new FormData(e.currentTarget);
+  // formData.forEach((value, key) => {
+  //   data[key] = value;
+  // });
 }
 
 // const s = document.querySelector('.select-field-a');

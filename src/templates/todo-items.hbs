@@ -1,4 +1,6 @@
-<div class="card">
+
+{{#each this}}
+<li class="card" id={{id}}>
   <div class="category-image">
     <div class="category-image__background">
       <span class="category-image__icon">
@@ -10,10 +12,10 @@
 
   <div class="field-cards">
     <ul class="field-cards__list">
-      <li class="field-cards__item js-data">Data</li>
-      <li class="field-cards__item js-task">Task</li>
-      <li class="field-cards__item js-content">Tomatoes, milk...</li>
-      <li class="field-cards__item js-data">5/10/21</li>
+      <li class="field-cards__item ">5/10/21</li>
+      <li class="field-cards__item ">{{category}}</li>
+      <li class="field-cards__item ">{{content}}</li>
+      <li class="field-cards__item ">Time</li>
     </ul>
   </div>
 
@@ -36,4 +38,6 @@
       </button>
     </li>
   </ul>
-</div>
+</li>
+
+{{/each}}
