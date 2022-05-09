@@ -18,15 +18,19 @@ export default class TodoItems {
   addTodoItem(item) {
     this.todoData.push(item);
     this.setLocalStorage(item);
-    this.updateTodoListInterface(item);
+    this.updateTodoListBody(item);
   }
 
   removeTodoItemById(id) {
-    const filteredData = this.todoData.filter(item => item.id !== id);
+    const filteredData = this.getTodoData().filter(item => item.id !== id);
+    const todoItem = this.makerItemsCards(filteredData);
     this.setTodoData(filteredData);
+    this.setLocalStorage(filteredData);
+    ref.todoList.innerHTML = '';
+    ref.todoList.insertAdjacentHTML('beforeend', todoItem);
   }
 
-  updateTodoListInterface(item) {
+  updateTodoListBody(item) {
     const todoItem = this.makerItemCard(item);
     ref.todoList.insertAdjacentHTML('beforeend', todoItem);
   }
@@ -45,13 +49,18 @@ export default class TodoItems {
     return result;
   }
 
-  setLocalStorage(obj) {
-    const currentData = this.getLocalStorage();
-    currentData.push(obj);
-    localStorage.setItem('todo', JSON.stringify(currentData));
+  setLocalStorage(data) {
+    if (typeof data === 'object') {
+      const currentData = this.getLocalStorage();
+      currentData.push(data);
+      localStorage.setItem('todo', JSON.stringify(currentData));
+    }
+    if (Array.isArray(data)) {
+      localStorage.setItem('todo', JSON.stringify(data));
+    }
   }
 
-  getTodoListFromLS() {
+  getTodoListFromLocalStorage() {
     const data = this.getLocalStorage();
     if (data.length > 0) {
       const dataList = this.makerItemsCards(data);

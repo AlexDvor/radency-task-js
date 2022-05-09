@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import TodoItems from './maker-todo-item';
 
 export const todoData = new TodoItems();
-todoData.getTodoListFromLS();
+todoData.getTodoListFromLocalStorage();
 
 ref.creatButtonItem.addEventListener('click', openCreateModal);
 ref.exitIcon.addEventListener('click', onCloseModal);
