@@ -1,4 +1,5 @@
 import ref from './ref';
+import { format } from 'date-fns';
 import todoItemTpl from '../templates/todo-item.hbs';
 import todoItemsTpl from '../templates/todo-items.hbs';
 
@@ -70,5 +71,12 @@ export default class TodoItems {
     } else {
       return;
     }
+  }
+
+  getCurrentCalendarData() {
+    return format(new Date(), 'dd/MM/yy');
+  }
+  getCurrentTime() {
+    return format(new Date(), 'HH:mm');
   }
 }

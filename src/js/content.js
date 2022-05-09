@@ -21,3 +21,6 @@ function onRemoveItem(e) {
       todoData.removeTodoItemById(currentId);
   }
 }
+
+console.log(todoData.getCurrentCalendarData());
+console.log(todoData.getCurrentTime());
