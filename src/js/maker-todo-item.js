@@ -5,6 +5,7 @@ import todoItemsTpl from '../templates/todo-items.hbs';
 export default class TodoItems {
   constructor() {
     this.todoData = [];
+    this.archiveData = [];
   }
 
   getTodoData() {

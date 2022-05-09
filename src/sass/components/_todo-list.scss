@@ -57,6 +57,9 @@
 
 .card-button__item {
   margin: 0px;
+  &:not(:first-child) {
+    margin-left: 15px;
+  }
 }
 
 .card-button__btn {

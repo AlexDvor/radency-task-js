@@ -4,7 +4,20 @@ import { todoData } from './modal';
 ref.todoList.addEventListener('click', onRemoveItem);
 
 function onRemoveItem(e) {
-  const currentId = e.target;
-  console.log('🚀 - currentId', currentId);
-  todoData.removeTodoItemById(currentId);
+  console.log(todoData.getTodoData());
+  const currentActiveIcon = e.target.dataset.action;
+  const pathItem = e.composedPath();
+  const currentId = pathItem[4].id;
+
+  switch (currentActiveIcon) {
+    case 'edit':
+      console.log(currentId);
+      break;
+    case 'archiving':
+      console.log(currentId);
+      break;
+    case 'remove':
+      console.log(currentId);
+      todoData.removeTodoItemById(currentId);
+  }
 }
