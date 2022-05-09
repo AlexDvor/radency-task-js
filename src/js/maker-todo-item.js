@@ -1,16 +1,18 @@
+import ref from './ref';
 import todoItemTpl from '../templates/todo-item.hbs';
 import todoItemsTpl from '../templates/todo-items.hbs';
 
-const todoList = document.querySelector('.todo-list');
-
 export default class TodoItems {
-  constructor(item) {
+  constructor() {
     this.todoData = [];
-    this.todoItem = item;
   }
 
   getTodoData() {
     return this.todoData;
+  }
+
+  setTodoData(newData) {
+    this.todoData = newData;
   }
 
   addTodoItem(item) {
@@ -19,9 +21,14 @@ export default class TodoItems {
     this.updateTodoListInterface(item);
   }
 
+  removeTodoItemById(id) {
+    const filteredData = this.todoData.filter(item => item.id !== id);
+    this.setTodoData(filteredData);
+  }
+
   updateTodoListInterface(item) {
     const todoItem = this.makerItemCard(item);
-    todoList.insertAdjacentHTML('beforeend', todoItem);
+    ref.todoList.insertAdjacentHTML('beforeend', todoItem);
   }
 
   makerItemCard(obj) {
@@ -48,7 +55,8 @@ export default class TodoItems {
     const data = this.getLocalStorage();
     if (data.length > 0) {
       const dataList = this.makerItemsCards(data);
-      todoList.insertAdjacentHTML('beforeend', dataList);
+      ref.todoList.insertAdjacentHTML('beforeend', dataList);
+      this.setTodoData(data);
     } else {
       return;
     }

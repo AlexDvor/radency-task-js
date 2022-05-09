@@ -7,4 +7,5 @@ export default {
   selectOptions: document.querySelector('.select-options'),
   selectField: document.querySelector('.select-field'),
   form: document.querySelector('.form'),
+  todoList: document.querySelector('.todo-list'),
 };
