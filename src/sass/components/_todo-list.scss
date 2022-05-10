@@ -41,6 +41,7 @@
   display: flex;
   align-items: center;
   flex-basis: 900px;
+  text-align: center;
 }
 
 .field-cards__item {
@@ -71,12 +72,17 @@
   transition: all 0.2s ease;
   padding: 0;
   cursor: pointer;
+
+  &:hover {
+    background-color: $todo-button-hover;
+    border: none;
+
+    .fa-todo-hover {
+      color: $todo-hover-icon;
+    }
+  }
 }
 
 .card-button__icon {
   color: $todo-background-icon-color;
-}
-
-.fa-solid-hover:hover {
-  color: $todo-hover-icon;
 }
