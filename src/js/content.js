@@ -4,10 +4,9 @@ import { todoData } from './modal';
 ref.todoList.addEventListener('click', onRemoveItem);
 
 function onRemoveItem(e) {
-  console.log(todoData.getTodoData());
   const currentActiveIcon = e.target.dataset.action;
   const pathItem = e.composedPath();
-  const currentId = pathItem[4].id;
+  const currentId = pathItem[5].id;
 
   switch (currentActiveIcon) {
     case 'edit':

@@ -4,17 +4,19 @@
 
 .card {
   display: flex;
-  padding: 20px;
-  margin-top: 20px;
-  align-items: center;
+  border-radius: 5px;
+  padding: 15px;
   background-color: $todo-background-color;
-  border-radius: 8px;
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
 }
 
 .category-image {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: unset;
 }
 
 .category-image__background {
@@ -28,7 +30,6 @@
 }
 
 .category-image__icon {
-  font-size: 18px;
   color: white;
 }
 
@@ -38,41 +39,41 @@
 
 .field-cards {
   display: flex;
-}
-
-.field-cards__list {
-  display: flex;
-  list-style: none;
-  margin-left: 20px;
+  align-items: center;
+  flex-basis: 900px;
 }
 
 .field-cards__item {
+  flex-basis: 225px;
   &:not(:first-child) {
-    margin-left: 160px;
+    margin-left: 10px;
   }
 }
 
 .card-button__list {
   display: flex;
-  list-style: none;
+  justify-content: center;
+  align-items: center;
   margin-left: auto;
 }
 
 .card-button__item {
-  margin: 0px;
-  &:not(:first-child) {
-    margin-left: 15px;
+  &:not(:last-child) {
+    margin-right: 8px;
   }
 }
 
 .card-button__btn {
-  border: none;
-  background-color: transparent;
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  border: solid 1px rgb(11 27 34 / 50%);
+  transition: all 0.2s ease;
+  padding: 0;
   cursor: pointer;
 }
 
 .card-button__icon {
-  font-size: 18px;
   color: $todo-background-icon-color;
 }
 

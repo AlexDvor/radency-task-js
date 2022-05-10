@@ -10,26 +10,31 @@
     <p class="category-image__title">Shopping List</p>
   </div>
 
-  <div class="field-cards">
-    <ul class="field-cards__list">
+    <ul class="field-cards">
       <li class="field-cards__item ">{{currentData}}</li>
       <li class="field-cards__item ">{{category}}</li>
       <li class="field-cards__item ">{{content}}</li>
       <li class="field-cards__item ">{{currentTime }}</li>
     </ul>
-  </div>
 
   <ul class="card-button__list">
     <li class="card-button__item">
+      <button class="card-button__btn" type="button">
         <span class="card-button__icon"> <i class="fa-solid fa-pen fa-solid-hover" data-action="edit"></i></span>
+        </button>
     </li>
     <li class="card-button__item">
+      <button class="card-button__btn" type="button">
         <span class="card-button__icon">
-          <i class="fa-solid fa-box-archive fa-solid-hover" data-action="archiving"></i
-        ></span>
+          <i class="fa-solid fa-box-archive fa-solid-hover" data-action="archiving"></i>
+          </span>
+        </button>
     </li>
     <li class="card-button__item">
-        <span class="card-button__icon"> <i class="fa-solid fa-trash-can fa-solid-hover" data-action="remove"></i></span>
+      <button class="card-button__btn" type="button">
+        <span class="card-button__icon"> <i class="fa-solid fa-trash-can fa-solid-hover" data-action="remove"></i>
+        </span>
+        </button>
     </li>
   </ul>
 </li>
