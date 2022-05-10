@@ -1,9 +1,12 @@
 body {
   font-family: $body-font-family;
-  background-color: $body-background-color;
+  background: $body-background-color;
+  background-size: cover;
+  background-attachment: fixed;
   color: $body-font-color;
 }
 
 label {
   margin-bottom: 10px;
+  color: $modal-label-color;
 }

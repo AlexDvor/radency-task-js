@@ -1,20 +1,27 @@
-$body-background-color: #6c6c6c;
+$body-background-color: linear-gradient(
+  225deg,
+  rgba(27, 52, 163, 1) 0%,
+  rgba(161, 161, 161, 1) 100%
+);
 $body-font-color: black;
 $body-font-family: 'Roboto', sans-serif;
-
 //header
 $header-background-color: #979797;
 $header-font-color: white;
 // modal
-$background: #e74c3c;
-$select-color: #fff;
-$select-background: #1b9bc5;
-$input-background: #1b9bc5;
-$select-width: 220px;
-$select-height: 40px;
-$animation-duration: 250ms;
-$timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-
+$modal-select-color: #fff;
+$modal-select-background: #3a6587;
+$modal-input-background: #3a6587;
+$modal-select-height: 40px;
+$modal-animation-duration: 250ms;
+$modal-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+$modal-title-color: white;
+$modal-label-color: #cdcdcd;
+$modal-background-color: linear-gradient(
+  225deg,
+  rgba(27, 52, 163, 1) 0%,
+  rgba(161, 161, 161, 1) 100%
+);
 //todo list item
 $todo-background-color: #d8d7e1;
 $todo-background-image-color: #1b34a3;
