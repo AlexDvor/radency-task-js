@@ -1,9 +1,9 @@
 body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #37788d;
-  color: white;
+  font-family: $body-font-family;
+  background-color: $body-background-color;
+  color: $body-font-color;
 }
 
-.fa-solid-hover:hover {
-  color: #063746;
+label {
+  margin-bottom: 10px;
 }
