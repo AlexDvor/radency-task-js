@@ -6,17 +6,16 @@ ref.todoList.addEventListener('click', onRemoveItem);
 function onRemoveItem(e) {
   const currentActiveIcon = e.target.dataset.action;
   const pathItem = e.composedPath();
-  const currentId = pathItem[5].id;
+  const currentId = pathItem[3].id || pathItem[5].id;
 
   switch (currentActiveIcon) {
     case 'edit':
-      console.log(currentId);
+      console.log('Edit');
       break;
-    case 'archiving':
-      console.log(currentId);
+    case 'archive':
+      console.log('archive');
       break;
     case 'remove':
-      console.log(currentId);
       todoData.removeTodoItemById(currentId);
   }
 }
