@@ -1,6 +1,5 @@
 import ref from './ref';
-import todoItemTpl from '../templates/todo-item.hbs';
-import todoItemsTpl from '../templates/todo-items.hbs';
+import handleParseToDo from './handlebars';
 
 export default class Todo {
   constructor() {
@@ -24,7 +23,7 @@ export default class Todo {
 
   removeTodoItemById(id) {
     const filteredData = this.getTodoData().filter(item => item.id !== id);
-    const todoItem = this.makerItemsCards(filteredData);
+    const todoItem = this.makerCard(filteredData);
     this.setTodoData(filteredData);
     this.setLocalStorage(filteredData);
     ref.todoList.innerHTML = '';
@@ -32,16 +31,12 @@ export default class Todo {
   }
 
   updateTodoListBody(item) {
-    const todoItem = this.makerItemCard(item);
+    const todoItem = this.makerCard(item);
     ref.todoList.insertAdjacentHTML('beforeend', todoItem);
   }
 
-  makerItemCard(obj) {
-    return todoItemTpl(obj);
-  }
-
-  makerItemsCards(arr) {
-    return todoItemsTpl(arr);
+  makerCard(data) {
+    return handleParseToDo(data);
   }
 
   getLocalStorage() {
@@ -64,7 +59,7 @@ export default class Todo {
   getTodoListFromLocalStorage() {
     const data = this.getLocalStorage();
     if (data.length > 0) {
-      const dataList = this.makerItemsCards(data);
+      const dataList = this.makerCard(data);
       ref.todoList.insertAdjacentHTML('beforeend', dataList);
       this.setTodoData(data);
     } else {
