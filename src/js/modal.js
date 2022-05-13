@@ -21,7 +21,7 @@ function openCreateModal(e) {
 function onCloseModal(e) {
   window.removeEventListener('keydown', onKeyDownClick);
   ref.modal.classList.remove('lightbox--open');
-  resetSelect();
+  resetForm();
 }
 
 function onKeyDownClick(e) {
@@ -36,10 +36,11 @@ function onBackdropClick(e) {
   }
 }
 
-function resetSelect() {
+function resetForm() {
   const defaultValue = ref.selectOptions.children[0].textContent;
   ref.selectContent.textContent = defaultValue;
   ref.selectOptions.classList.remove('select-options--open');
+  ref.form.reset();
 }
 
 function onClickSelectOptions(e) {
@@ -76,7 +77,8 @@ function onFormSubmit(e) {
   const currentData = getCurrentCalendarData();
   const currentTime = getCurrentTime();
   const id = uuidv4().slice(0, 6);
-  todoData.addTodoItem({ id, category, content, objective, currentData, currentTime });
+
+  // todoData.addTodoItem({ id, category, content, objective, currentData, currentTime });
   // console.log(todoData.getTodoData());
   // const contentValude = formData.content.value;
   // const data = {};
@@ -84,4 +86,9 @@ function onFormSubmit(e) {
   // formData.forEach((value, key) => {
   //   data[key] = value;
   // });
+
+  for (let i = 0; i < formData.length - 1; i++) {
+    console.dir(`${formData[i].name} : ${formData[i].value}`);
+  }
+  resetForm();
 }
