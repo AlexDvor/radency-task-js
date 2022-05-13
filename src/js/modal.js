@@ -29,8 +29,6 @@ function onFormSubmit(e) {
     todoData.addTodoItem({ id, category, content, objective, currentData, currentTime });
     onCloseModal();
     resetForm();
-  } else {
-    console.log('form has not been validated');
   }
   // const contentValude = formData.content.value;
   // const data = {};
@@ -125,7 +123,7 @@ function validateForm(dataForm) {
 
     if (dataForm[i].value === 'hide') {
       ref.selectContent.classList.add('is-empty');
-      return console.log('+++dataForm', dataForm[i]);
+      return console.log(`${dataForm[i].name} is empty`);
     } else {
       ref.selectContent.classList.remove('is-empty');
     }

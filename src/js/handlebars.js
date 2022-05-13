@@ -2,6 +2,8 @@ import Handlebars from 'handlebars';
 import toDoTemplate from './helpers/templates';
 
 Handlebars.registerHelper('getImage', getImageIcon);
+Handlebars.registerHelper('parseContent', parseContent);
+Handlebars.registerHelper('parseCategory', parseCategory);
 
 const template = Handlebars.compile(toDoTemplate());
 
@@ -19,6 +21,27 @@ function getImageIcon(string) {
 
     case 'goals':
       return new Handlebars.SafeString('<i class="fa-solid fa-bullseye"></i>');
+  }
+}
+
+function parseContent(content) {
+  const stringArray = content.split(' ');
+  const result = lineSeparator(stringArray);
+  return result;
+}
+
+function parseCategory(category) {
+  const stringLowerCase = category.toLowerCase();
+  const stringArray = stringLowerCase.split(' ').map(item => item[0].toUpperCase() + item.slice(1));
+  const result = lineSeparator(stringArray);
+  return result;
+}
+
+function lineSeparator(arr) {
+  if (arr.length > 1) {
+    return `${arr[0]} ${arr[1]}`;
+  } else {
+    return `${arr[0]}`;
   }
 }
 

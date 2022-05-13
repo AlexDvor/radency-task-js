@@ -7,13 +7,13 @@ export default function toDoTemplate() {
        {{getImage category}}
       </span>
     </div>
-    <p class="category-image__title">Shopping List</p>
+    <p class="category-image__title">{{parseCategory category}}</p>
   </div>
 
     <ul class="field-cards">
       <li class="field-cards__item ">{{currentData}}</li>
-      <li class="field-cards__item ">{{category}}</li>
-      <li class="field-cards__item ">{{content}}</li>
+      <li class="field-cards__item ">{{objective}}</li>
+      <li class="field-cards__item ">{{parseContent content}}</li>
       <li class="field-cards__item ">{{currentTime }}</li>
     </ul>
 
