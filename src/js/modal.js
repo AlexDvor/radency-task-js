@@ -44,13 +44,28 @@ function resetForm() {
   ref.form.reset();
 }
 
+function getSelectIndex(collection, value) {
+  const newArr = [];
+  for (let i = 0; i < collection.length; i++) {
+    newArr.push(collection[i].attributes.rel.value);
+  }
+
+  const response = newArr.indexOf(value);
+  if (response === -1) {
+    return console.log('Unable to locate element name');
+  } else {
+    return response;
+  }
+}
+
 function onClickSelectOptions(e) {
   const selectValue = e.target.textContent;
   const attributeValue = e.target.attributes.rel.value;
+  const selectIndex = getSelectIndex(ref.selectOptions.children, attributeValue);
   const iconRef = e.target.children[0].lastElementChild.className;
   const wrapperIcon = `<span class="select-options__icon"> <i class='${iconRef}'></i></span >`;
+  ref.selectField.options.selectedIndex = selectIndex;
   ref.selectContent.textContent = selectValue;
-  ref.selectField.options[ref.selectField.selectedIndex].value = attributeValue;
   ref.selectContent.insertAdjacentHTML('afterBegin', wrapperIcon);
   ref.selectContent.classList.toggle('active');
   ref.selectOptions.classList.toggle('select-options--open');
@@ -87,9 +102,17 @@ function onFormSubmit(e) {
   // formData.forEach((value, key) => {
   //   data[key] = value;
   // });
+  //
 
   for (let i = 0; i < formData.length - 1; i++) {
     console.dir(`${formData[i].name} : ${formData[i].value}`);
   }
+
+  // console.log('ref.selectField.value', ref.selectField.value);
+  // const testSelect = document.querySelector('.select-test');
+  // testSelect.options.selectedIndex = testSelect.options[2].value;
+  // console.dir(testSelect);
+  // console.dir(ref.selectField);
+
   resetForm();
 }
