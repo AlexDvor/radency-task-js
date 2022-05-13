@@ -56,8 +56,6 @@
   color: $modal-title-color;
 }
 
-/////////
-
 .select--hidden {
   display: none;
   visibility: hidden;
@@ -71,10 +69,6 @@
   font-size: 16px;
   color: $modal-select-color;
   height: $modal-select-height;
-  // &:not(:last-child) {
-  //   margin-right: 30px;
-  // }
-
   margin-bottom: 20px;
 }
 
@@ -166,6 +160,7 @@
   border: none;
   color: white;
   padding: 10px;
+  transition: all 0.2s ease-in;
 }
 
 .form-content {
@@ -176,6 +171,7 @@
   padding: 10px;
   resize: none;
   margin-bottom: 20px;
+  transition: all 0.2s ease-in;
 }
 
 .form-submit-button {
@@ -183,4 +179,8 @@
   border: none;
   background-color: $modal-input-background;
   color: white;
+}
+
+.is-empty {
+  border: 1px solid red;
 }

@@ -14,6 +14,46 @@ ref.selectOptions.addEventListener('click', onClickSelectOptions);
 ref.selectContent.addEventListener('click', onClickSelectContent);
 ref.form.addEventListener('submit', onFormSubmit);
 
+function onFormSubmit(e) {
+  e.preventDefault();
+  const formData = e.currentTarget.elements;
+  const category = formData.category.value;
+  const content = formData.content.value;
+  const objective = formData.objective.value;
+  const currentData = getCurrentCalendarData();
+  const currentTime = getCurrentTime();
+  const id = uuidv4().slice(0, 6);
+  const isValidForm = validateForm(formData);
+
+  if (isValidForm) {
+    todoData.addTodoItem({ id, category, content, objective, currentData, currentTime });
+    onCloseModal();
+    resetForm();
+  } else {
+    console.log('form has not been validated');
+  }
+  // const contentValude = formData.content.value;
+  // const data = {};
+  // const formData = new FormData(e.currentTarget);
+  // formData.forEach((value, key) => {
+  //   data[key] = value;
+  // });
+  //////////////
+}
+
+function onClickSelectOptions(e) {
+  const selectValue = e.target.textContent;
+  const attributeValue = e.target.attributes.rel.value;
+  const selectIndex = getSelectIndex(ref.selectOptions.children, attributeValue);
+  const iconRef = e.target.children[0].lastElementChild.className;
+  const wrapperIcon = `<span class="select-options__icon"> <i class='${iconRef}'></i></span >`;
+  ref.selectField.options.selectedIndex = selectIndex;
+  ref.selectContent.textContent = selectValue;
+  ref.selectContent.insertAdjacentHTML('afterBegin', wrapperIcon);
+  ref.selectContent.classList.toggle('active');
+  ref.selectOptions.classList.toggle('select-options--open');
+}
+
 function openCreateModal(e) {
   window.addEventListener('keydown', onKeyDownClick);
   ref.modal.classList.add('lightbox--open');
@@ -41,6 +81,9 @@ function resetForm() {
   const defaultValue = ref.selectOptions.children[0].textContent;
   ref.selectContent.textContent = defaultValue;
   ref.selectOptions.classList.remove('select-options--open');
+  ref.selectContent.classList.remove('is-empty');
+  ref.form.elements.category.classList.remove('is-empty');
+  ref.form.elements.content.classList.remove('is-empty');
   ref.form.reset();
 }
 
@@ -58,19 +101,6 @@ function getSelectIndex(collection, value) {
   }
 }
 
-function onClickSelectOptions(e) {
-  const selectValue = e.target.textContent;
-  const attributeValue = e.target.attributes.rel.value;
-  const selectIndex = getSelectIndex(ref.selectOptions.children, attributeValue);
-  const iconRef = e.target.children[0].lastElementChild.className;
-  const wrapperIcon = `<span class="select-options__icon"> <i class='${iconRef}'></i></span >`;
-  ref.selectField.options.selectedIndex = selectIndex;
-  ref.selectContent.textContent = selectValue;
-  ref.selectContent.insertAdjacentHTML('afterBegin', wrapperIcon);
-  ref.selectContent.classList.toggle('active');
-  ref.selectOptions.classList.toggle('select-options--open');
-}
-
 function onClickSelectContent() {
   ref.selectContent.classList.toggle('active');
   ref.selectOptions.classList.toggle('select-options--open');
@@ -84,35 +114,22 @@ function getCurrentTime() {
   return format(new Date(), 'HH:mm');
 }
 
-function onFormSubmit(e) {
-  e.preventDefault();
-  const formData = e.currentTarget.elements;
-  const category = formData.category.value;
-  const content = formData.content.value;
-  const objective = formData.objective.value;
-  const currentData = getCurrentCalendarData();
-  const currentTime = getCurrentTime();
-  const id = uuidv4().slice(0, 6);
+function validateForm(dataForm) {
+  for (let i = 0; i < dataForm.length - 1; i++) {
+    if (dataForm[i].value === '') {
+      dataForm[i].classList.add('is-empty');
+      return console.log(`${dataForm[i].name} is empty`);
+    } else {
+      dataForm[i].classList.remove('is-empty');
+    }
 
-  // todoData.addTodoItem({ id, category, content, objective, currentData, currentTime });
-  // console.log(todoData.getTodoData());
-  // const contentValude = formData.content.value;
-  // const data = {};
-  // const formData = new FormData(e.currentTarget);
-  // formData.forEach((value, key) => {
-  //   data[key] = value;
-  // });
-  //
-
-  for (let i = 0; i < formData.length - 1; i++) {
-    console.dir(`${formData[i].name} : ${formData[i].value}`);
+    if (dataForm[i].value === 'hide') {
+      ref.selectContent.classList.add('is-empty');
+      return console.log('+++dataForm', dataForm[i]);
+    } else {
+      ref.selectContent.classList.remove('is-empty');
+    }
+    console.dir(`${dataForm[i].name} : ${dataForm[i].value}`);
   }
-
-  // console.log('ref.selectField.value', ref.selectField.value);
-  // const testSelect = document.querySelector('.select-test');
-  // testSelect.options.selectedIndex = testSelect.options[2].value;
-  // console.dir(testSelect);
-  // console.dir(ref.selectField);
-
-  resetForm();
+  return true;
 }
