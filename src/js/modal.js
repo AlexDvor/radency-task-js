@@ -4,6 +4,7 @@ import { format } from 'date-fns';
 import Todo from './Todo';
 
 export const todoData = new Todo();
+
 todoData.getTodoListFromLocalStorage();
 
 ref.creatButtonItem.addEventListener('click', openCreateModal);
