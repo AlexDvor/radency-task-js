@@ -2,35 +2,43 @@ import refs from './refs';
 import { v4 as uuidv4 } from 'uuid';
 import { format } from 'date-fns';
 import Todo from './Todo';
+import Modal from './Modal';
 
 export const todoData = new Todo();
+const creatModal = new Modal();
 
 todoData.getTodoListFromLocalStorage();
 
-refs.creatButtonItem.addEventListener('click', openCreateModal);
-refs.exitIcon.addEventListener('click', onCloseModal);
-refs.overlay.addEventListener('click', onBackdropClick);
+refs.creatButtonItem.addEventListener('click', e => creatModal.onOpenModal(e));
+refs.exitIcon.addEventListener('click', e => creatModal.onCloseModal(e));
+refs.overlay.addEventListener('click', e => creatModal.onBackdropClick(e));
 
 refs.selectOptions.addEventListener('click', onClickSelectOptions);
 refs.selectContent.addEventListener('click', onClickSelectContent);
 refs.form.addEventListener('submit', onFormSubmit);
 
-function openCreateModal(e) {
-  window.addEventListener('keydown', onKeyDownClick);
-  refs.modal.classList.add('lightbox--open');
-}
+// function openCreateModal(e) {
+//   window.addEventListener('keydown', onKeyDownClick);
+//   refs.modal.classList.add('lightbox--open');
+// }
 
-function onCloseModal(e) {
-  window.removeEventListener('keydown', onKeyDownClick);
-  refs.modal.classList.remove('lightbox--open');
-  resetForm();
-}
+// function onCloseModal(e) {
+//   window.removeEventListener('keydown', onKeyDownClick);
+//   refs.modal.classList.remove('lightbox--open');
+//   resetForm();
+// }
 
-function onBackdropClick(e) {
-  if (e.currentTarget === e.target) {
-    onCloseModal();
-  }
-}
+// function onBackdropClick(e) {
+//   if (e.currentTarget === e.target) {
+//     onCloseModal();
+//   }
+// }
+
+// function onKeyDownClick(e) {
+//   if (e.code === 'Escape') {
+//     onCloseModal();
+//   }
+// }
 
 function onClickSelectOptions(e) {
   const selectValue = e.target.textContent;
@@ -75,21 +83,15 @@ function onFormSubmit(e) {
   //////////////
 }
 
-function onKeyDownClick(e) {
-  if (e.code === 'Escape') {
-    onCloseModal();
-  }
-}
-
-function resetForm() {
-  const defaultValue = refs.selectOptions.children[0].textContent;
-  refs.selectContent.textContent = defaultValue;
-  refs.selectOptions.classList.remove('select-options--open');
-  refs.selectContent.classList.remove('is-empty');
-  refs.form.elements.category.classList.remove('is-empty');
-  refs.form.elements.content.classList.remove('is-empty');
-  refs.form.reset();
-}
+// function resetForm() {
+//   const defaultValue = refs.selectOptions.children[0].textContent;
+//   refs.selectContent.textContent = defaultValue;
+//   refs.selectOptions.classList.remove('select-options--open');
+//   refs.selectContent.classList.remove('is-empty');
+//   refs.form.elements.category.classList.remove('is-empty');
+//   refs.form.elements.content.classList.remove('is-empty');
+//   refs.form.reset();
+// }
 
 function getSelectIndex(collection, value) {
   const newArr = [];
