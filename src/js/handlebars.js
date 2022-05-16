@@ -33,13 +33,13 @@ function parseContent(content) {
 function parseCategory(category) {
   const stringLowerCase = category.toLowerCase();
   const stringArray = stringLowerCase.split(' ').map(item => item[0].toUpperCase() + item.slice(1));
-  const result = lineSeparator(stringArray);
+  const result = stringArray.join(' ');
   return result;
 }
 
 function lineSeparator(arr) {
   if (arr.length > 1) {
-    return `${arr[0]} ${arr[1]}`;
+    return `${arr[0]} ${arr[1]}...`;
   } else {
     return `${arr[0]}`;
   }
