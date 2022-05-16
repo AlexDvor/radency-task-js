@@ -1,9 +1,9 @@
 import refs from './refs';
 import { todoData } from './create-todo-modal';
 
-refs.todoList.addEventListener('click', onRemoveItem);
+refs.todoList.addEventListener('click', onOperationsTodo);
 
-function onRemoveItem(e) {
+function onOperationsTodo(e) {
   const currentActiveIcon = e.target.dataset.action;
   const pathItem = e.composedPath();
   const currentId = pathItem[3].id || pathItem[5].id;
@@ -19,3 +19,5 @@ function onRemoveItem(e) {
       todoData.removeTodoItemById(currentId);
   }
 }
+
+function editTodo() {}

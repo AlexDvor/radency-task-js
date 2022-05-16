@@ -1,5 +1,5 @@
 import Handlebars from 'handlebars';
-import toDoTemplate from './helpers/templates';
+import toDoTemplate from './templates/todo-template';
 
 Handlebars.registerHelper('getImage', getImageIcon);
 Handlebars.registerHelper('parseContent', parseContent);

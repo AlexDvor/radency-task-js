@@ -10,9 +10,45 @@ todoData.getTodoListFromLocalStorage();
 refs.creatButtonItem.addEventListener('click', openCreateModal);
 refs.exitIcon.addEventListener('click', onCloseModal);
 refs.overlay.addEventListener('click', onBackdropClick);
+
 refs.selectOptions.addEventListener('click', onClickSelectOptions);
 refs.selectContent.addEventListener('click', onClickSelectContent);
 refs.form.addEventListener('submit', onFormSubmit);
+
+function openCreateModal(e) {
+  window.addEventListener('keydown', onKeyDownClick);
+  refs.modal.classList.add('lightbox--open');
+}
+
+function onCloseModal(e) {
+  window.removeEventListener('keydown', onKeyDownClick);
+  refs.modal.classList.remove('lightbox--open');
+  resetForm();
+}
+
+function onBackdropClick(e) {
+  if (e.currentTarget === e.target) {
+    onCloseModal();
+  }
+}
+
+function onClickSelectOptions(e) {
+  const selectValue = e.target.textContent;
+  const attributeValue = e.target.attributes.rel.value;
+  const selectIndex = getSelectIndex(refs.selectOptions.children, attributeValue);
+  const iconRef = e.target.children[0].lastElementChild.className;
+  const wrapperIcon = `<span class="select-options__icon"> <i class='${iconRef}'></i></span >`;
+  refs.selectField.options.selectedIndex = selectIndex;
+  refs.selectContent.textContent = selectValue;
+  refs.selectContent.insertAdjacentHTML('afterBegin', wrapperIcon);
+  refs.selectContent.classList.toggle('active');
+  refs.selectOptions.classList.toggle('select-options--open');
+}
+
+function onClickSelectContent() {
+  refs.selectContent.classList.toggle('active');
+  refs.selectOptions.classList.toggle('select-options--open');
+}
 
 function onFormSubmit(e) {
   e.preventDefault();
@@ -39,38 +75,8 @@ function onFormSubmit(e) {
   //////////////
 }
 
-function onClickSelectOptions(e) {
-  const selectValue = e.target.textContent;
-  const attributeValue = e.target.attributes.rel.value;
-  const selectIndex = getSelectIndex(refs.selectOptions.children, attributeValue);
-  const iconRef = e.target.children[0].lastElementChild.className;
-  const wrapperIcon = `<span class="select-options__icon"> <i class='${iconRef}'></i></span >`;
-  refs.selectField.options.selectedIndex = selectIndex;
-  refs.selectContent.textContent = selectValue;
-  refs.selectContent.insertAdjacentHTML('afterBegin', wrapperIcon);
-  refs.selectContent.classList.toggle('active');
-  refs.selectOptions.classList.toggle('select-options--open');
-}
-
-function openCreateModal(e) {
-  window.addEventListener('keydown', onKeyDownClick);
-  refs.modal.classList.add('lightbox--open');
-}
-
-function onCloseModal(e) {
-  window.removeEventListener('keydown', onKeyDownClick);
-  refs.modal.classList.remove('lightbox--open');
-  resetForm();
-}
-
 function onKeyDownClick(e) {
   if (e.code === 'Escape') {
-    onCloseModal();
-  }
-}
-
-function onBackdropClick(e) {
-  if (e.currentTarget === e.target) {
     onCloseModal();
   }
 }
@@ -97,11 +103,6 @@ function getSelectIndex(collection, value) {
   } else {
     return response;
   }
-}
-
-function onClickSelectContent() {
-  refs.selectContent.classList.toggle('active');
-  refs.selectOptions.classList.toggle('select-options--open');
 }
 
 function getCurrentCalendarData() {
