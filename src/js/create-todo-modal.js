@@ -43,8 +43,8 @@ function onClickSelectOptions(e) {
   const selectValue = e.target.textContent;
   const attributeValue = e.target.attributes.rel.value;
   const selectIndex = getSelectIndex(refs.selectOptions.children, attributeValue);
-  const iconrefs = e.target.children[0].lastElementChild.className;
-  const wrapperIcon = `<span class="select-options__icon"> <i class='${iconrefs}'></i></span >`;
+  const iconRef = e.target.children[0].lastElementChild.className;
+  const wrapperIcon = `<span class="select-options__icon"> <i class='${iconRef}'></i></span >`;
   refs.selectField.options.selectedIndex = selectIndex;
   refs.selectContent.textContent = selectValue;
   refs.selectContent.insertAdjacentHTML('afterBegin', wrapperIcon);
