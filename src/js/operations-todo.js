@@ -1,7 +1,7 @@
-import ref from './ref';
-import { todoData } from './modal';
+import refs from './refs';
+import { todoData } from './create-todo-modal';
 
-ref.todoList.addEventListener('click', onRemoveItem);
+refs.todoList.addEventListener('click', onRemoveItem);
 
 function onRemoveItem(e) {
   const currentActiveIcon = e.target.dataset.action;

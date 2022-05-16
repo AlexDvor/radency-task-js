@@ -1,4 +1,4 @@
-import ref from './ref';
+import refs from './refs';
 import { v4 as uuidv4 } from 'uuid';
 import { format } from 'date-fns';
 import Todo from './Todo';
@@ -7,12 +7,12 @@ export const todoData = new Todo();
 
 todoData.getTodoListFromLocalStorage();
 
-ref.creatButtonItem.addEventListener('click', openCreateModal);
-ref.exitIcon.addEventListener('click', onCloseModal);
-ref.overlay.addEventListener('click', onBackdropClick);
-ref.selectOptions.addEventListener('click', onClickSelectOptions);
-ref.selectContent.addEventListener('click', onClickSelectContent);
-ref.form.addEventListener('submit', onFormSubmit);
+refs.creatButtonItem.addEventListener('click', openCreateModal);
+refs.exitIcon.addEventListener('click', onCloseModal);
+refs.overlay.addEventListener('click', onBackdropClick);
+refs.selectOptions.addEventListener('click', onClickSelectOptions);
+refs.selectContent.addEventListener('click', onClickSelectContent);
+refs.form.addEventListener('submit', onFormSubmit);
 
 function onFormSubmit(e) {
   e.preventDefault();
@@ -42,24 +42,24 @@ function onFormSubmit(e) {
 function onClickSelectOptions(e) {
   const selectValue = e.target.textContent;
   const attributeValue = e.target.attributes.rel.value;
-  const selectIndex = getSelectIndex(ref.selectOptions.children, attributeValue);
-  const iconRef = e.target.children[0].lastElementChild.className;
-  const wrapperIcon = `<span class="select-options__icon"> <i class='${iconRef}'></i></span >`;
-  ref.selectField.options.selectedIndex = selectIndex;
-  ref.selectContent.textContent = selectValue;
-  ref.selectContent.insertAdjacentHTML('afterBegin', wrapperIcon);
-  ref.selectContent.classList.toggle('active');
-  ref.selectOptions.classList.toggle('select-options--open');
+  const selectIndex = getSelectIndex(refs.selectOptions.children, attributeValue);
+  const iconrefs = e.target.children[0].lastElementChild.className;
+  const wrapperIcon = `<span class="select-options__icon"> <i class='${iconrefs}'></i></span >`;
+  refs.selectField.options.selectedIndex = selectIndex;
+  refs.selectContent.textContent = selectValue;
+  refs.selectContent.insertAdjacentHTML('afterBegin', wrapperIcon);
+  refs.selectContent.classList.toggle('active');
+  refs.selectOptions.classList.toggle('select-options--open');
 }
 
 function openCreateModal(e) {
   window.addEventListener('keydown', onKeyDownClick);
-  ref.modal.classList.add('lightbox--open');
+  refs.modal.classList.add('lightbox--open');
 }
 
 function onCloseModal(e) {
   window.removeEventListener('keydown', onKeyDownClick);
-  ref.modal.classList.remove('lightbox--open');
+  refs.modal.classList.remove('lightbox--open');
   resetForm();
 }
 
@@ -76,13 +76,13 @@ function onBackdropClick(e) {
 }
 
 function resetForm() {
-  const defaultValue = ref.selectOptions.children[0].textContent;
-  ref.selectContent.textContent = defaultValue;
-  ref.selectOptions.classList.remove('select-options--open');
-  ref.selectContent.classList.remove('is-empty');
-  ref.form.elements.category.classList.remove('is-empty');
-  ref.form.elements.content.classList.remove('is-empty');
-  ref.form.reset();
+  const defaultValue = refs.selectOptions.children[0].textContent;
+  refs.selectContent.textContent = defaultValue;
+  refs.selectOptions.classList.remove('select-options--open');
+  refs.selectContent.classList.remove('is-empty');
+  refs.form.elements.category.classList.remove('is-empty');
+  refs.form.elements.content.classList.remove('is-empty');
+  refs.form.reset();
 }
 
 function getSelectIndex(collection, value) {
@@ -100,8 +100,8 @@ function getSelectIndex(collection, value) {
 }
 
 function onClickSelectContent() {
-  ref.selectContent.classList.toggle('active');
-  ref.selectOptions.classList.toggle('select-options--open');
+  refs.selectContent.classList.toggle('active');
+  refs.selectOptions.classList.toggle('select-options--open');
 }
 
 function getCurrentCalendarData() {
@@ -122,10 +122,10 @@ function validateForm(dataForm) {
     }
 
     if (dataForm[i].value === 'hide') {
-      ref.selectContent.classList.add('is-empty');
+      refs.selectContent.classList.add('is-empty');
       return console.log(`${dataForm[i].name} is empty`);
     } else {
-      ref.selectContent.classList.remove('is-empty');
+      refs.selectContent.classList.remove('is-empty');
     }
     console.dir(`${dataForm[i].name} : ${dataForm[i].value}`);
   }

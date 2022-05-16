@@ -1,4 +1,4 @@
-import ref from './ref';
+import refs from './refs';
 import handleParseToDo from './handlebars';
 
 export default class Todo {
@@ -26,13 +26,13 @@ export default class Todo {
     const todoItem = this.makerCard(filteredData);
     this.setTodoData(filteredData);
     this.setLocalStorage(filteredData);
-    ref.todoList.innerHTML = '';
-    ref.todoList.insertAdjacentHTML('beforeend', todoItem);
+    refs.todoList.innerHTML = '';
+    refs.todoList.insertAdjacentHTML('beforeend', todoItem);
   }
 
   updateTodoListBody(item) {
     const todoItem = this.makerCard(item);
-    ref.todoList.insertAdjacentHTML('beforeend', todoItem);
+    refs.todoList.insertAdjacentHTML('beforeend', todoItem);
   }
 
   makerCard(data) {
@@ -60,7 +60,7 @@ export default class Todo {
     const data = this.getLocalStorage();
     if (data.length > 0) {
       const dataList = this.makerCard(data);
-      ref.todoList.insertAdjacentHTML('beforeend', dataList);
+      refs.todoList.insertAdjacentHTML('beforeend', dataList);
       this.setTodoData(data);
     } else {
       return;
