@@ -66,4 +66,9 @@ export default class Todo {
       return;
     }
   }
+
+  editTodoItem(todo) {
+    const todoData = this.getTodoData().filter(item => item.id !== todo.id);
+    console.log('🚀 - todoData', todoData);
+  }
 }

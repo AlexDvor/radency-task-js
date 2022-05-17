@@ -58,8 +58,8 @@ function onFormSubmit(e) {
     todoData.addTodoItem(result);
   }
   if (result && typeBtn === 'confirm') {
-    console.log(result);
-    console.log('Call todo process');
+    todoData.editTodoItem(result);
+    console.log(result.id);
   }
   // e.preventDefault();
   // const formData = e.currentTarget.elements;
