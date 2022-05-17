@@ -1,12 +1,12 @@
 import refs from './refs';
 
 export default class Modal {
-  onOpenModal() {
+  openModal() {
     window.addEventListener('keydown', event => this.onKeyDownClick(event));
     refs.modal.classList.add('lightbox--open');
   }
 
-  onCloseModal() {
+  closeModal() {
     window.removeEventListener('keydown', event => this.onKeyDownClick(event));
     refs.modal.classList.remove('lightbox--open');
     this.resetForm();
@@ -14,13 +14,13 @@ export default class Modal {
 
   onKeyDownClick(event) {
     if (event.code === 'Escape') {
-      this.onCloseModal();
+      this.closeModal();
     }
   }
 
-  onBackdropClick(event) {
+  backdropClick(event) {
     if (event.currentTarget === event.target) {
-      this.onCloseModal();
+      this.closeModal();
     }
   }
 

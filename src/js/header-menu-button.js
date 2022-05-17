@@ -1,6 +1,10 @@
 import refs from './refs';
 import { v4 as uuidv4 } from 'uuid';
-import { format } from 'date-fns';
+import validateForm from './helpers/validate-form';
+import getCurrentCalendarData from './helpers/calendar-data';
+import getCurrentTime from './helpers/current-time';
+import getSelectIndex from './helpers/select-index';
+
 import Todo from './Todo';
 import Modal from './Modal';
 
@@ -8,15 +12,25 @@ export const todoData = new Todo();
 const creatModal = new Modal();
 
 todoData.getTodoListFromLocalStorage();
-
-refs.creatButtonItem.addEventListener('click', e => creatModal.onOpenModal(e));
-refs.exitIcon.addEventListener('click', e => creatModal.onCloseModal(e));
-refs.overlay.addEventListener('click', e => creatModal.onBackdropClick(e));
-
+// buttons Listener
+refs.creatButtonItem.addEventListener('click', onOpenModal);
+// select and form Listener
 refs.selectOptions.addEventListener('click', onClickSelectOptions);
 refs.selectContent.addEventListener('click', onClickSelectContent);
 refs.form.addEventListener('submit', onFormSubmit);
+// modal Listener
+refs.exitIcon.addEventListener('click', onCloseModal);
+refs.overlay.addEventListener('click', onBackdropClick);
 
+function onOpenModal(e) {
+  creatModal.openModal(e);
+}
+function onCloseModal(e) {
+  creatModal.closeModal(e);
+}
+function onBackdropClick(e) {
+  creatModal.backdropClick(e);
+}
 // function openCreateModal(e) {
 //   window.addEventListener('keydown', onKeyDownClick);
 //   refs.modal.classList.add('lightbox--open');
@@ -92,45 +106,3 @@ function onFormSubmit(e) {
 //   refs.form.elements.content.classList.remove('is-empty');
 //   refs.form.reset();
 // }
-
-function getSelectIndex(collection, value) {
-  const newArr = [];
-  for (let i = 0; i < collection.length; i++) {
-    newArr.push(collection[i].attributes.rel.value);
-  }
-
-  const response = newArr.indexOf(value);
-  if (response === -1) {
-    return console.log('Unable to locate element name');
-  } else {
-    return response;
-  }
-}
-
-function getCurrentCalendarData() {
-  return format(new Date(), 'dd/MM/yy');
-}
-
-function getCurrentTime() {
-  return format(new Date(), 'HH:mm');
-}
-
-function validateForm(dataForm) {
-  for (let i = 0; i < dataForm.length - 1; i++) {
-    if (dataForm[i].value === '') {
-      dataForm[i].classList.add('is-empty');
-      return console.log(`${dataForm[i].name} is empty`);
-    } else {
-      dataForm[i].classList.remove('is-empty');
-    }
-
-    if (dataForm[i].value === 'hide') {
-      refs.selectContent.classList.add('is-empty');
-      return console.log(`${dataForm[i].name} is empty`);
-    } else {
-      refs.selectContent.classList.remove('is-empty');
-    }
-    console.dir(`${dataForm[i].name} : ${dataForm[i].value}`);
-  }
-  return true;
-}
