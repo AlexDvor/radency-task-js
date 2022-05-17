@@ -5,6 +5,18 @@ import getCurrentCalendarData from './helpers/calendar-data';
 import getCurrentTime from './helpers/current-time';
 
 export default class Modal {
+  constructor() {
+    this.id = '';
+  }
+
+  getId() {
+    return this.id;
+  }
+
+  setId(newId) {
+    this.id = newId;
+  }
+
   openModal() {
     window.addEventListener('keydown', event => this.onKeyDownClick(event));
     refs.modal.classList.add('lightbox--open');
@@ -44,18 +56,26 @@ export default class Modal {
     const category = formData.category.value;
     const content = formData.content.value;
     const objective = formData.objective.value;
+    const changedTodoId = this.getId();
     const currentData = getCurrentCalendarData();
     const currentTime = getCurrentTime();
     const id = uuidv4().slice(0, 6);
     const isValidForm = validateForm(formData);
     const todoData = { id, category, content, objective, currentData, currentTime };
+    const changedData = { changedTodoId, category, content, currentData, currentTime };
+    const typeBtn = refs.confirmModalButton.dataset.button;
+    console.log('🚀 - typeBtn', typeBtn);
 
-    if (isValidForm) {
+    if (isValidForm && typeBtn === 'create') {
       this.closeModal();
       this.resetForm();
       return todoData;
-    } else {
-      return false;
     }
+
+    if (isValidForm && typeBtn === 'confirm') {
+      return changedData;
+    }
+
+    return false;
   }
 }

@@ -45,7 +45,7 @@ function lineSeparator(arr) {
   }
 }
 
-export default function handleParseToDo(data) {
+function handleParseToDo(data) {
   if (Array.isArray(data)) {
     return data.map(item => template(item)).join('');
   }
@@ -53,3 +53,5 @@ export default function handleParseToDo(data) {
     return template(data);
   }
 }
+
+export { handleParseToDo, parseCategory };

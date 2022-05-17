@@ -1,5 +1,5 @@
 import refs from './refs';
-import handleParseToDo from './handlebars';
+import { handleParseToDo } from './handlebars';
 
 export default class Todo {
   constructor() {

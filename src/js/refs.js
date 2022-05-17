@@ -1,6 +1,8 @@
 export default {
   creatButtonItem: document.querySelector('[data-action="create-item"]'),
+  confirmModalButton: document.querySelector('[data-button="confirm"]'),
   modal: document.querySelector('.lightbox'),
+  titleModal: document.querySelector('.lightbox-title'),
   exitIcon: document.querySelector('.lightbox-content___icon-exit'),
   overlay: document.querySelector('.lightbox__overlay'),
   selectContent: document.querySelector('.select-styled'),

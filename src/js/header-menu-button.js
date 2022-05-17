@@ -24,10 +24,15 @@ refs.overlay.addEventListener('click', onBackdropClick);
 
 function onOpenModal(e) {
   creatModal.openModal(e);
+  refs.confirmModalButton.textContent = 'Create';
+  refs.titleModal.textContent = 'Create to do list';
+  refs.confirmModalButton.dataset.button = 'create';
 }
+
 function onCloseModal(e) {
   creatModal.closeModal(e);
 }
+
 function onBackdropClick(e) {
   creatModal.backdropClick(e);
 }
@@ -74,8 +79,13 @@ function onClickSelectContent() {
 
 function onFormSubmit(e) {
   const result = creatModal.formSubmit(e);
-  if (result) {
+  const typeBtn = refs.confirmModalButton.dataset.button;
+
+  if (result && typeBtn === 'create') {
     todoData.addTodoItem(result);
+  }
+  if (result && typeBtn === 'confirm') {
+    console.log('updated item todo');
   }
   // e.preventDefault();
   // const formData = e.currentTarget.elements;
