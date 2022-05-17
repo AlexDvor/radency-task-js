@@ -1,15 +1,10 @@
 import refs from './refs';
-import { v4 as uuidv4 } from 'uuid';
-import validateForm from './helpers/validate-form';
-import getCurrentCalendarData from './helpers/calendar-data';
-import getCurrentTime from './helpers/current-time';
 import getSelectIndex from './helpers/select-index';
-
 import Todo from './Todo';
 import Modal from './Modal';
 
-export const todoData = new Todo();
-const creatModal = new Modal();
+const todoData = new Todo();
+const modal = new Modal();
 
 todoData.getTodoListFromLocalStorage();
 // buttons Listener
@@ -23,41 +18,19 @@ refs.exitIcon.addEventListener('click', onCloseModal);
 refs.overlay.addEventListener('click', onBackdropClick);
 
 function onOpenModal(e) {
-  creatModal.openModal(e);
+  modal.openModal(e);
   refs.confirmModalButton.textContent = 'Create';
   refs.titleModal.textContent = 'Create to do list';
   refs.confirmModalButton.dataset.button = 'create';
 }
 
 function onCloseModal(e) {
-  creatModal.closeModal(e);
+  modal.closeModal(e);
 }
 
 function onBackdropClick(e) {
-  creatModal.backdropClick(e);
+  modal.backdropClick(e);
 }
-// function openCreateModal(e) {
-//   window.addEventListener('keydown', onKeyDownClick);
-//   refs.modal.classList.add('lightbox--open');
-// }
-
-// function onCloseModal(e) {
-//   window.removeEventListener('keydown', onKeyDownClick);
-//   refs.modal.classList.remove('lightbox--open');
-//   resetForm();
-// }
-
-// function onBackdropClick(e) {
-//   if (e.currentTarget === e.target) {
-//     onCloseModal();
-//   }
-// }
-
-// function onKeyDownClick(e) {
-//   if (e.code === 'Escape') {
-//     onCloseModal();
-//   }
-// }
 
 function onClickSelectOptions(e) {
   const selectValue = e.target.textContent;
@@ -78,14 +51,15 @@ function onClickSelectContent() {
 }
 
 function onFormSubmit(e) {
-  const result = creatModal.formSubmit(e);
+  const result = modal.formSubmit(e);
   const typeBtn = refs.confirmModalButton.dataset.button;
 
   if (result && typeBtn === 'create') {
     todoData.addTodoItem(result);
   }
   if (result && typeBtn === 'confirm') {
-    console.log('updated item todo');
+    console.log(result);
+    console.log('Call todo process');
   }
   // e.preventDefault();
   // const formData = e.currentTarget.elements;
@@ -111,12 +85,4 @@ function onFormSubmit(e) {
   //////////////
 }
 
-// function resetForm() {
-//   const defaultValue = refs.selectOptions.children[0].textContent;
-//   refs.selectContent.textContent = defaultValue;
-//   refs.selectOptions.classList.remove('select-options--open');
-//   refs.selectContent.classList.remove('is-empty');
-//   refs.form.elements.category.classList.remove('is-empty');
-//   refs.form.elements.content.classList.remove('is-empty');
-//   refs.form.reset();
-// }
+export { todoData, modal };

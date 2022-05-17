@@ -64,7 +64,6 @@ export default class Modal {
     const todoData = { id, category, content, objective, currentData, currentTime };
     const changedData = { changedTodoId, category, content, currentData, currentTime };
     const typeBtn = refs.confirmModalButton.dataset.button;
-    console.log('🚀 - typeBtn', typeBtn);
 
     if (isValidForm && typeBtn === 'create') {
       this.closeModal();
@@ -73,6 +72,7 @@ export default class Modal {
     }
 
     if (isValidForm && typeBtn === 'confirm') {
+      //  this.closeModal();
       return changedData;
     }
 

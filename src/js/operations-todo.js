@@ -1,11 +1,10 @@
 import refs from './refs';
-import { todoData } from './header-menu-button';
+import { todoData } from './common-todo-modal';
 import { parseCategory } from './handlebars';
-import Modal from './Modal';
+import { modal } from './common-todo-modal';
 import getIconRef from './helpers/getIconRef';
 
 refs.todoList.addEventListener('click', onOperationsTodo);
-const modal = new Modal();
 
 function onOperationsTodo(event) {
   const currentActiveIcon = event.target.dataset.action;
@@ -32,7 +31,6 @@ function editTodoOperation(e, id) {
   objective.value = currentTodoItem.objective;
   changeStyleForEditModal(currentTodoItem);
   modal.setId(id);
-  console.log(modal.getId());
   modal.openModal();
 }
 
