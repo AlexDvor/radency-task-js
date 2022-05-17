@@ -1,4 +1,8 @@
 import refs from './refs';
+import { v4 as uuidv4 } from 'uuid';
+import validateForm from './helpers/validate-form';
+import getCurrentCalendarData from './helpers/calendar-data';
+import getCurrentTime from './helpers/current-time';
 
 export default class Modal {
   openModal() {
@@ -32,5 +36,26 @@ export default class Modal {
     refs.form.elements.category.classList.remove('is-empty');
     refs.form.elements.content.classList.remove('is-empty');
     refs.form.reset();
+  }
+
+  formSubmit(e) {
+    e.preventDefault();
+    const formData = e.currentTarget.elements;
+    const category = formData.category.value;
+    const content = formData.content.value;
+    const objective = formData.objective.value;
+    const currentData = getCurrentCalendarData();
+    const currentTime = getCurrentTime();
+    const id = uuidv4().slice(0, 6);
+    const isValidForm = validateForm(formData);
+    const todoData = { id, category, content, objective, currentData, currentTime };
+
+    if (isValidForm) {
+      this.closeModal();
+      this.resetForm();
+      return todoData;
+    } else {
+      return false;
+    }
   }
 }

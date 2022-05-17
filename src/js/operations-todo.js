@@ -10,14 +10,25 @@ function onOperationsTodo(e) {
 
   switch (currentActiveIcon) {
     case 'edit':
-      console.log('Edit');
+      editTodoOperation();
       break;
     case 'archive':
-      console.log('archive');
+      archiveTodoOperation();
       break;
     case 'remove':
-      todoData.removeTodoItemById(currentId);
+      removeTodoOperation(currentId);
   }
 }
 
-function editTodo() {}
+function editTodoOperation() {
+  console.log('edit');
+}
+
+function removeTodoOperation(id) {
+  console.log('remove');
+}
+// todoData.removeTodoItemById(id);
+
+function archiveTodoOperation() {
+  console.log('archive');
+}
