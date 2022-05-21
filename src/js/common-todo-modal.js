@@ -59,7 +59,7 @@ function onFormSubmit(e) {
   }
   if (result && typeBtn === 'confirm') {
     todoData.editTodoItem(result);
-    console.log(result);
+    // console.log(result);
   }
 
   // e.preventDefault();

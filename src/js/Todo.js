@@ -68,9 +68,20 @@ export default class Todo {
     }
   }
 
+  getTodoIndex({ id }) {
+    let indexElement;
+    this.getTodoData().find((item, index) => {
+      if (item.id === id) {
+        indexElement = index;
+        return indexElement;
+      }
+    });
+  }
+
   editTodoItem(todo) {
-    const todoData = this.getTodoData().filter(item => item.id !== todo.id);
-    todoData.push(todo);
+    const indexEl = this.getTodoIndex(todo);
+    const todoData = this.getTodoData();
+    todoData.splice(indexEl, 1, todo);
     const todoItem = this.makerCard(todoData);
     this.setTodoData(todoData);
     this.setLocalStorage(todoData);
