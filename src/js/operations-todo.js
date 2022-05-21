@@ -1,7 +1,7 @@
 import refs from './refs';
-import { todoData } from './common-todo-modal';
+import { todoData } from './todo-modal';
 import { parseCategory } from './handlebars';
-import { modal } from './common-todo-modal';
+import { modal } from './todo-modal';
 import getIconRef from './helpers/getIconRef';
 
 refs.todoList.addEventListener('click', onOperationsTodo);
