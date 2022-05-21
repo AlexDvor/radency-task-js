@@ -16,9 +16,10 @@ export default class Todo {
   }
 
   addTodoItem(item) {
-    this.todoData.push(item);
+    this.todoData.unshift(item);
     this.setLocalStorage(item);
     this.updateTodoListBody(item);
+    console.log(this.todoData);
   }
 
   removeTodoItemById(id) {
@@ -32,7 +33,7 @@ export default class Todo {
 
   updateTodoListBody(item) {
     const todoItem = this.makerCard(item);
-    refs.todoList.insertAdjacentHTML('beforeend', todoItem);
+    refs.todoList.insertAdjacentHTML('afterbegin', todoItem);
   }
 
   makerCard(data) {
@@ -48,7 +49,7 @@ export default class Todo {
   setLocalStorage(data) {
     if (typeof data === 'object') {
       const currentData = this.getLocalStorage();
-      currentData.push(data);
+      currentData.unshift(data);
       localStorage.setItem('todo', JSON.stringify(currentData));
     }
     if (Array.isArray(data)) {
@@ -69,6 +70,11 @@ export default class Todo {
 
   editTodoItem(todo) {
     const todoData = this.getTodoData().filter(item => item.id !== todo.id);
-    console.log('🚀 - todoData', todoData);
+    todoData.push(todo);
+    const todoItem = this.makerCard(todoData);
+    this.setTodoData(todoData);
+    this.setLocalStorage(todoData);
+    refs.todoList.innerHTML = '';
+    refs.todoList.insertAdjacentHTML('beforeend', todoItem);
   }
 }

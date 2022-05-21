@@ -59,8 +59,9 @@ function onFormSubmit(e) {
   }
   if (result && typeBtn === 'confirm') {
     todoData.editTodoItem(result);
-    console.log(result.id);
+    console.log(result);
   }
+
   // e.preventDefault();
   // const formData = e.currentTarget.elements;
   // const category = formData.category.value;

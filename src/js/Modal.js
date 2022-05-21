@@ -62,7 +62,15 @@ export default class Modal {
     const id = uuidv4().slice(0, 6);
     const isValidForm = validateForm(formData);
     const todoData = { id, category, content, objective, currentData, currentTime };
-    const changedData = { id: changedTodoId, category, content, currentData, currentTime };
+    const changedData = {
+      id: changedTodoId,
+      category,
+      objective,
+      content,
+      currentData,
+      currentTime,
+    };
+
     const typeBtn = refs.confirmModalButton.dataset.button;
 
     if (isValidForm && typeBtn === 'create') {
@@ -72,7 +80,7 @@ export default class Modal {
     }
 
     if (isValidForm && typeBtn === 'confirm') {
-      //  this.closeModal();
+      this.closeModal();
       return changedData;
     }
 
