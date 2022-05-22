@@ -12,6 +12,9 @@ function onOperationsTodo(event) {
   const currentId = pathItem[3].id || pathItem[5].id;
 
   switch (currentActiveIcon) {
+    case 'done':
+      doneTodoOperation(currentId);
+      break;
     case 'edit':
       editTodoOperation(event, currentId);
       break;
@@ -21,6 +24,10 @@ function onOperationsTodo(event) {
     case 'remove':
       removeTodoOperation(currentId);
   }
+}
+
+function doneTodoOperation(id) {
+  todoData.addTodoItemToDoneList(id);
 }
 
 function editTodoOperation(e, id) {
@@ -35,7 +42,6 @@ function editTodoOperation(e, id) {
 }
 
 function removeTodoOperation(id) {
-  console.log('delete');
   todoData.removeTodoItemById(id);
 }
 

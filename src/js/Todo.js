@@ -5,6 +5,7 @@ export default class Todo {
   constructor() {
     this.todoData = [];
     this.archiveData = [];
+    this.doneList = [];
   }
 
   getTodoData() {
@@ -17,16 +18,16 @@ export default class Todo {
 
   addTodoItem(item) {
     this.todoData.unshift(item);
-    this.setLocalStorage(item);
+    this.setLocalStorage(item, 'todo');
     this.updateTodoListBody(item);
     console.log(this.todoData);
   }
 
-  removeTodoItemById(id) {
+  removeTodoItemById(id, nameStor) {
     const filteredData = this.getTodoData().filter(item => item.id !== id);
     const todoItem = this.makerCard(filteredData);
     this.setTodoData(filteredData);
-    this.setLocalStorage(filteredData);
+    this.setLocalStorage(filteredData, nameStor);
     refs.todoList.innerHTML = '';
     refs.todoList.insertAdjacentHTML('beforeend', todoItem);
   }
@@ -36,29 +37,36 @@ export default class Todo {
     refs.todoList.insertAdjacentHTML('afterbegin', todoItem);
   }
 
+  addTodoItemToDoneList(id) {
+    const todoItem = this.getTodoData().find(item => item.id === id);
+    this.doneList.unshift(todoItem);
+    this.removeTodoItemById(id, 'todo');
+    this.setLocalStorage(todoItem, 'done');
+  }
+
   makerCard(data) {
     return handleParseToDo(data);
   }
 
-  getLocalStorage() {
-    const savedTodoList = localStorage.getItem('todo');
+  getLocalStorage(nameStor) {
+    const savedTodoList = localStorage.getItem(nameStor);
     const result = savedTodoList ? JSON.parse(savedTodoList) : new Array();
     return result;
   }
 
-  setLocalStorage(data) {
+  setLocalStorage(data, nameStor) {
     if (typeof data === 'object') {
-      const currentData = this.getLocalStorage();
+      const currentData = this.getLocalStorage(nameStor);
       currentData.unshift(data);
-      localStorage.setItem('todo', JSON.stringify(currentData));
+      localStorage.setItem(nameStor, JSON.stringify(currentData));
     }
     if (Array.isArray(data)) {
-      localStorage.setItem('todo', JSON.stringify(data));
+      localStorage.setItem(nameStor, JSON.stringify(data));
     }
   }
 
   getTodoListFromLocalStorage() {
-    const data = this.getLocalStorage();
+    const data = this.getLocalStorage('todo');
     if (data.length > 0) {
       const dataList = this.makerCard(data);
       refs.todoList.insertAdjacentHTML('beforeend', dataList);
@@ -85,7 +93,7 @@ export default class Todo {
     todoData.splice(indexEl, 1, { ...itemToDo, ...todo });
     const todoItem = this.makerCard(todoData);
     this.setTodoData(todoData);
-    this.setLocalStorage(todoData);
+    this.setLocalStorage(todoData, 'todo');
     refs.todoList.innerHTML = '';
     refs.todoList.insertAdjacentHTML('beforeend', todoItem);
   }
