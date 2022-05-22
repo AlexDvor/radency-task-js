@@ -56,32 +56,27 @@ export default class Modal {
     const category = formData.category.value;
     const content = formData.content.value;
     const objective = formData.objective.value;
+    const typeBtn = refs.confirmModalButton.dataset.button;
     const changedTodoId = this.getId();
-    const currentData = getCurrentCalendarData();
-    const currentTime = getCurrentTime();
+    const currentData = `${getCurrentCalendarData()} - ${getCurrentTime()}`;
     const id = uuidv4().slice(0, 6);
     const isValidForm = validateForm(formData);
-    const todoData = { id, category, content, objective, currentData, currentTime };
-    const changedData = {
-      id: changedTodoId,
-      category,
-      objective,
-      content,
-      currentData,
-      currentTime,
-    };
-
-    const typeBtn = refs.confirmModalButton.dataset.button;
 
     if (isValidForm && typeBtn === 'create') {
       this.closeModal();
       this.resetForm();
-      return todoData;
+      return { id, category, content, objective, data_creation: currentData };
     }
 
     if (isValidForm && typeBtn === 'confirm') {
       this.closeModal();
-      return changedData;
+      return {
+        id: changedTodoId,
+        category,
+        objective,
+        content,
+        data_change: currentData,
+      };
     }
 
     return false;

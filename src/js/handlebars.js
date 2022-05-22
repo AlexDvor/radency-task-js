@@ -4,6 +4,7 @@ import toDoTemplate from './templates/todo-template';
 Handlebars.registerHelper('getImage', getImageIcon);
 Handlebars.registerHelper('parseContent', parseContent);
 Handlebars.registerHelper('parseCategory', parseCategory);
+Handlebars.registerHelper('parseModifyData', parseModifyData);
 
 const template = Handlebars.compile(toDoTemplate());
 
@@ -35,6 +36,10 @@ function parseCategory(category) {
   const stringArray = stringLowerCase.split(' ').map(item => item[0].toUpperCase() + item.slice(1));
   const result = stringArray.join(' ');
   return result;
+}
+
+function parseModifyData(changedData) {
+  return changedData ?? '---';
 }
 
 function lineSeparator(arr) {

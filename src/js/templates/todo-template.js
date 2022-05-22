@@ -11,10 +11,10 @@ export default function toDoTemplate() {
   </div>
 
     <ul class="field-cards">
-      <li class="field-cards__item ">{{currentData}}</li>
+      <li class="field-cards__item ">{{data_creation}}</li>
       <li class="field-cards__item ">{{objective}}</li>
       <li class="field-cards__item ">{{parseContent content}}</li>
-      <li class="field-cards__item ">{{currentTime }}</li>
+      <li class="field-cards__item ">{{parseModifyData data_change}}</li>
     </ul>
 
   <ul class="card-button__list">
