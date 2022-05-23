@@ -42,7 +42,7 @@ function editTodoOperation(e, id) {
 }
 
 function removeTodoOperation(id) {
-  todoData.removeTodoItemById(id);
+  todoData.removeTodoItemById(id, 'todo');
 }
 
 function archiveTodoOperation() {
