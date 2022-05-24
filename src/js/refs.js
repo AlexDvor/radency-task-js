@@ -10,4 +10,8 @@ export default {
   selectField: document.querySelector('.select-field'),
   form: document.querySelector('.form'),
   todoList: document.querySelector('.todo-list'),
+
+  // count section:
+
+  countList: document.querySelector('.count-list'),
 };
