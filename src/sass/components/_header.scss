@@ -2,7 +2,8 @@
   display: flex;
   padding: 0px 15px 0px 15px;
   margin-top: 50px;
-  border-radius: 5px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
   background-color: $header-background-color;
   color: $header-font-color;
 }
