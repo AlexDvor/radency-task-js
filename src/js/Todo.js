@@ -1,5 +1,5 @@
 import refs from './refs';
-import { handleParseToDo } from './handlebars';
+import { handleParseToDo, handleParseCount } from './handlebars';
 
 export default class Todo {
   constructor() {
@@ -7,6 +7,8 @@ export default class Todo {
     this.archiveData = [];
     this.doneList = [];
   }
+
+  // todo
 
   getTodoData() {
     return this.todoData;
@@ -25,28 +27,86 @@ export default class Todo {
 
   removeTodoItemById(id, nameStor) {
     const filteredData = this.getTodoData().filter(item => item.id !== id);
-    const todoItem = this.makerCard(filteredData);
+    const todoItem = this.makerTodoItem(filteredData);
     this.setTodoData(filteredData);
     this.setLocalStorage(filteredData, nameStor);
     refs.todoList.innerHTML = '';
     refs.todoList.insertAdjacentHTML('beforeend', todoItem);
   }
 
+  editTodoItem(todo) {
+    const indexEl = this.getTodoIndex(todo);
+    const itemToDo = this.getTodoData().find(item => item.id === todo.id);
+    const todoData = this.getTodoData();
+    todoData.splice(indexEl, 1, { ...itemToDo, ...todo });
+    const todoItem = this.makerTodoItem(todoData);
+    this.setTodoData(todoData);
+    this.setLocalStorage(todoData, 'todo');
+    refs.todoList.innerHTML = '';
+    refs.todoList.insertAdjacentHTML('beforeend', todoItem);
+  }
+
   updateTodoListBody(item) {
-    const todoItem = this.makerCard(item);
+    const todoItem = this.makerTodoItem(item);
     refs.todoList.insertAdjacentHTML('afterbegin', todoItem);
   }
 
-  addTodoItemToDoneList(id) {
+  makerTodoItem(data) {
+    return handleParseToDo(data);
+  }
+
+  getTodoIndex({ id }) {
+    let indexElement;
+    this.getTodoData().find((item, index) => {
+      if (item.id === id) {
+        indexElement = index;
+        return indexElement;
+      }
+    });
+  }
+
+  getTodoListFromLocalStorage() {
+    const data = this.getLocalStorage('todo');
+    if (data.length > 0) {
+      const dataList = this.makerTodoItem(data);
+      refs.todoList.insertAdjacentHTML('beforeend', dataList);
+      this.setTodoData(data);
+    } else {
+      return;
+    }
+  }
+
+  // count
+
+  getDoneList() {
+    return this.doneList;
+  }
+
+  setDoneList(newData) {
+    this.doneList = newData;
+  }
+
+  makerCountItem(data) {
+    return handleParseCount(data);
+  }
+
+  getDoneListFromLocalStorage() {
+    const data = this.getLocalStorage('done');
+    if (data.length > 0) {
+      this.setDoneList(data);
+    } else {
+      return;
+    }
+  }
+
+  relocateTodoItemToDoneList(id) {
     const todoItem = this.getTodoData().find(item => item.id === id);
     this.doneList.unshift(todoItem);
     this.removeTodoItemById(id, 'todo');
     this.setLocalStorage(todoItem, 'done');
   }
 
-  makerCard(data) {
-    return handleParseToDo(data);
-  }
+  //common
 
   getLocalStorage(nameStor) {
     const savedTodoList = localStorage.getItem(nameStor);
@@ -63,38 +123,5 @@ export default class Todo {
     if (Array.isArray(data)) {
       localStorage.setItem(nameStor, JSON.stringify(data));
     }
-  }
-
-  getTodoListFromLocalStorage() {
-    const data = this.getLocalStorage('todo');
-    if (data.length > 0) {
-      const dataList = this.makerCard(data);
-      refs.todoList.insertAdjacentHTML('beforeend', dataList);
-      this.setTodoData(data);
-    } else {
-      return;
-    }
-  }
-
-  getTodoIndex({ id }) {
-    let indexElement;
-    this.getTodoData().find((item, index) => {
-      if (item.id === id) {
-        indexElement = index;
-        return indexElement;
-      }
-    });
-  }
-
-  editTodoItem(todo) {
-    const indexEl = this.getTodoIndex(todo);
-    const itemToDo = this.getTodoData().find(item => item.id === todo.id);
-    const todoData = this.getTodoData();
-    todoData.splice(indexEl, 1, { ...itemToDo, ...todo });
-    const todoItem = this.makerCard(todoData);
-    this.setTodoData(todoData);
-    this.setLocalStorage(todoData, 'todo');
-    refs.todoList.innerHTML = '';
-    refs.todoList.insertAdjacentHTML('beforeend', todoItem);
   }
 }

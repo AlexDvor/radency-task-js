@@ -14,4 +14,7 @@ export default {
   // count section:
 
   countList: document.querySelector('.count-list'),
+  countActive: document.querySelector('[data-count="active"]'),
+  countArchived: document.querySelector('[data-count="archived"]'),
+  countDone: document.querySelector('[data-count="done"]'),
 };

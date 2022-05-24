@@ -1,8 +1,7 @@
 import refs from './refs';
 import { todoData } from './todo-modal';
-import { parseCategory } from './handlebars';
 import { modal } from './todo-modal';
-import getIconRef from './helpers/getIconRef';
+import changeStyleForEditModal from './helpers/changeStyleForEditModal';
 
 refs.todoList.addEventListener('click', onOperationsTodo);
 
@@ -27,7 +26,8 @@ function onOperationsTodo(event) {
 }
 
 function doneTodoOperation(id) {
-  todoData.addTodoItemToDoneList(id);
+  todoData.relocateTodoItemToDoneList(id);
+  console.log('done data', todoData.getDoneList());
 }
 
 function editTodoOperation(e, id) {
@@ -47,14 +47,4 @@ function removeTodoOperation(id) {
 
 function archiveTodoOperation() {
   console.log('archive');
-}
-
-function changeStyleForEditModal({ category }) {
-  const iconRef = getIconRef(category);
-  const wrapperIcon = `<span class="select-options__icon"> <i class='${iconRef}'></i></span >`;
-  refs.selectContent.textContent = parseCategory(category);
-  refs.selectContent.insertAdjacentHTML('afterBegin', wrapperIcon);
-  refs.confirmModalButton.textContent = 'Confirm';
-  refs.confirmModalButton.dataset.button = 'confirm';
-  refs.titleModal.textContent = 'Edit To Do';
 }
