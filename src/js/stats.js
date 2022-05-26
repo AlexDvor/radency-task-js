@@ -6,9 +6,11 @@ todoData.getDoneListFromLocalStorage();
 createStatsItem();
 
 function createStatsItem() {
-  const allCategory = todoData.getTodoData().map(item => item.category);
-  const result = allCategory.reduce(getStats, {});
-  return createStatsDataArray(result);
+  const data = todoData.getTodoData().map(item => item.category);
+  const allCategory = data.reduce(getStats, {});
+  const statsList = createStatsDataArray(allCategory);
+  const markupStats = todoData.makerStatsItem(statsList);
+  refs.statsList.insertAdjacentHTML('afterbegin', markupStats);
 }
 
 function getStats(acc, item) {
@@ -31,6 +33,7 @@ function createStatsDataArray(obj) {
       done: 0,
     });
   }
+  console.log('🚀 - data', data);
 
   return data;
 }

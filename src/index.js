@@ -3,4 +3,4 @@ import './sass/main.scss';
 import './js/Todo';
 import './js/operations-todo';
 import './js/todo-modal';
-import './js/count';
+import './js/stats';

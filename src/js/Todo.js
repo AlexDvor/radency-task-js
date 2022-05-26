@@ -1,5 +1,5 @@
 import refs from './refs';
-import { handleParseToDo, handleParseCount } from './handlebars';
+import { handleParseToDo, handleParseStats } from './handlebars';
 
 export default class Todo {
   constructor() {
@@ -76,7 +76,7 @@ export default class Todo {
     }
   }
 
-  // count
+  // stats
 
   getDoneList() {
     return this.doneList;
@@ -86,8 +86,8 @@ export default class Todo {
     this.doneList = newData;
   }
 
-  makerCountItem(data) {
-    return handleParseCount(data);
+  makerStatsItem(data) {
+    return handleParseStats(data);
   }
 
   getDoneListFromLocalStorage() {

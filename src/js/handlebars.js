@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars';
 import toDoTemplate from './templates/todo-template';
-import countTemplate from './templates/count-template';
+import countTemplate from './templates/stats-template';
 
 Handlebars.registerHelper('getImage', getImageIcon);
 Handlebars.registerHelper('parseContent', parseContent);
@@ -8,7 +8,7 @@ Handlebars.registerHelper('parseCategory', parseCategory);
 Handlebars.registerHelper('parseModifyData', parseModifyData);
 
 const templateTodo = Handlebars.compile(toDoTemplate());
-const templateCountItem = Handlebars.compile(countTemplate());
+const templateStatsItem = Handlebars.compile(countTemplate());
 
 function getImageIcon(string) {
   const value = string.toLowerCase();
@@ -61,13 +61,13 @@ function handleParseToDo(data) {
   }
 }
 
-function handleParseCount(data) {
+function handleParseStats(data) {
   if (Array.isArray(data)) {
-    return data.map(item => templateCountItem(item)).join('');
+    return data.map(item => templateStatsItem(item)).join('');
   }
   if (typeof data === 'object') {
-    return templateCountItem(data);
+    return templateStatsItem(data);
   }
 }
 
-export { handleParseToDo, parseCategory, handleParseCount };
+export { handleParseToDo, parseCategory, handleParseStats };

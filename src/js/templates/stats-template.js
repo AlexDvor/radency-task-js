@@ -1,14 +1,14 @@
-export default function countTemplate() {
+export default function statsTemplate() {
   return `
     <li class="count-list__item">
       <!--  -->
       <div class="category-image">
         <div class="category-image__background">
           <span class="category-image__icon">
-            <i class="fa-solid fa-calendar-plus"></i>
+            {{getImage name}}
           </span>
         </div>
-        <p class="category-image__title">New Feature</p>
+        <p class="category-image__title">{{parseCategory name}}</p>
       </div>
       <!--  -->
       <ul class="count-value">

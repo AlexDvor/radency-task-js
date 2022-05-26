@@ -13,8 +13,8 @@ export default {
 
   // count section:
 
-  countList: document.querySelector('.count-list'),
-  countActive: document.querySelector('[data-count="active"]'),
-  countArchived: document.querySelector('[data-count="archived"]'),
-  countDone: document.querySelector('[data-count="done"]'),
+  statsList: document.querySelector('.count-list'),
+  statsActive: document.querySelector('[data-count="active"]'),
+  statsArchived: document.querySelector('[data-count="archived"]'),
+  statsDone: document.querySelector('[data-count="done"]'),
 };
