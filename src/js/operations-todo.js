@@ -43,6 +43,7 @@ function editTodoOperation(e, id) {
 
 function removeTodoOperation(id) {
   todoData.removeTodoItemById(id, 'todo');
+  todoData.getActiveStats();
 }
 
 function archiveTodoOperation() {
