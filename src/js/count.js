@@ -3,19 +3,12 @@ import refs from './refs';
 
 todoData.getDoneListFromLocalStorage();
 
-createCountItem();
+createStatsItem();
 
-function createCountItem() {
-  const todo = todoData.getTodoData();
-  const allCategory = todo.map(item => item.category);
+function createStatsItem() {
+  const allCategory = todoData.getTodoData().map(item => item.category);
   const result = allCategory.reduce(getStats, {});
-  return result;
-  //   {
-  //     "goals": 3,
-  //     "shopping list": 2,
-  //     "new feature": 2,
-  //     "remind": 1
-  // }
+  return createStatsDataArray(result);
 }
 
 function getStats(acc, item) {
@@ -26,4 +19,18 @@ function getStats(acc, item) {
   acc[item] += 1;
 
   return acc;
+}
+
+function createStatsDataArray(obj) {
+  const data = [];
+  for (const key in obj) {
+    data.push({
+      name: key,
+      active: obj[key],
+      archived: 0,
+      done: 0,
+    });
+  }
+
+  return data;
 }
