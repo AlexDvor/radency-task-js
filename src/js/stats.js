@@ -7,8 +7,9 @@ function getStats() {
   const data = todoData.getTodoData();
   if (data.length > 0) {
     getActiveTodoItems(data);
+    return;
   }
-  return;
+  refs.statsList.innerHTML = '';
 }
 
 function getActiveTodoItems(todo) {
