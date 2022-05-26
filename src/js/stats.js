@@ -1,37 +1,47 @@
-import { todoData } from './todo-modal';
 import refs from './refs';
+import { todoData } from './todo-modal';
 
-createStatsItem();
+getStats();
 
-function createStatsItem() {
+function getStats() {
   const data = todoData.getTodoData();
   if (data.length > 0) {
-    todoData.getActiveStats();
+    getActiveTodoItems(data);
   }
   return;
 }
 
-// function getStatsFromObj(acc, item) {
-//   if (!acc.hasOwnProperty(item)) {
-//     acc[item] = 0;
-//   }
+function getActiveTodoItems(todo) {
+  const data = todo.map(item => item.category);
+  const allCategory = data.reduce(getStatsFromObj, {});
+  const statsList = createActiveStatsDataArray(allCategory);
+  const markupActiveStats = todoData.makerStatsItem(statsList);
+  refs.statsList.innerHTML = '';
+  refs.statsList.insertAdjacentHTML('afterbegin', markupActiveStats);
+}
 
-//   acc[item] += 1;
+function getStatsFromObj(acc, item) {
+  if (!acc.hasOwnProperty(item)) {
+    acc[item] = 0;
+  }
 
-//   return acc;
-// }
+  acc[item] += 1;
 
-// function createActiveStatsDataArray(obj) {
-//   const data = [];
-//   for (const key in obj) {
-//     data.push({
-//       name: key,
-//       active: obj[key],
-//       archived: 0,
-//       done: 0,
-//     });
-//   }
-//   console.log('🚀 - data', data);
+  return acc;
+}
 
-//   return data;
-// }
+function createActiveStatsDataArray(obj) {
+  const data = [];
+  for (const key in obj) {
+    data.push({
+      name: key,
+      active: obj[key],
+      archived: 0,
+      done: 0,
+    });
+  }
+
+  return data;
+}
+
+export { getStats };

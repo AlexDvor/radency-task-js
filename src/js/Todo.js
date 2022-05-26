@@ -77,15 +77,6 @@ export default class Todo {
 
   // stats
 
-  getActiveStats() {
-    const data = this.getTodoData().map(item => item.category);
-    const allCategory = data.reduce(this.getStatsFromObj, {});
-    const statsList = this.createActiveStatsDataArray(allCategory);
-    const markupActiveStats = this.makerStatsItem(statsList);
-    refs.statsList.innerHTML = '';
-    refs.statsList.insertAdjacentHTML('afterbegin', markupActiveStats);
-  }
-
   getDoneList() {
     return this.doneList;
   }
@@ -131,29 +122,5 @@ export default class Todo {
     if (Array.isArray(data)) {
       localStorage.setItem(nameStor, JSON.stringify(data));
     }
-  }
-
-  getStatsFromObj(acc, item) {
-    if (!acc.hasOwnProperty(item)) {
-      acc[item] = 0;
-    }
-
-    acc[item] += 1;
-
-    return acc;
-  }
-
-  createActiveStatsDataArray(obj) {
-    const data = [];
-    for (const key in obj) {
-      data.push({
-        name: key,
-        active: obj[key],
-        archived: 0,
-        done: 0,
-      });
-    }
-
-    return data;
   }
 }

@@ -1,7 +1,8 @@
 import refs from './refs';
-import getSelectIndex from './helpers/select-index';
 import Todo from './Todo';
 import Modal from './Modal';
+import getSelectIndex from './helpers/select-index';
+import { getStats } from './stats';
 
 const todoData = new Todo();
 const modal = new Modal();
@@ -56,7 +57,7 @@ function onFormSubmit(e) {
 
   if (result && typeBtn === 'create') {
     todoData.addTodoItem(result);
-    todoData.getActiveStats();
+    getStats();
   }
   if (result && typeBtn === 'confirm') {
     todoData.editTodoItem(result);
