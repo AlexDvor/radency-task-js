@@ -2,12 +2,11 @@ import refs from './refs';
 import Todo from './Todo';
 import Modal from './Modal';
 import getSelectIndex from './helpers/select-index';
-import { getStats } from './stats';
 
 const todoData = new Todo();
 const modal = new Modal();
 
-todoData.getTodoListFromLocalStorage();
+todoData.getTodoDataFromLocalStorage();
 // buttons Listener
 refs.creatButtonItem.addEventListener('click', onOpenModal);
 // select and form Listener
@@ -57,7 +56,6 @@ function onFormSubmit(e) {
 
   if (result && typeBtn === 'create') {
     todoData.addTodoItem(result);
-    getStats();
   }
   if (result && typeBtn === 'confirm') {
     todoData.editTodoItem(result);

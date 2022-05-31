@@ -1,24 +1,72 @@
 import refs from './refs';
 import { todoData } from './todo-modal';
 
-getStats();
+const todo = todoData.getTodoData();
+const done = todoData.getDoneList();
 
-function getStats() {
-  const data = todoData.getTodoData();
-  if (data.length > 0) {
-    getActiveTodoItems(data);
-    return;
-  }
-  refs.statsList.innerHTML = '';
+let stateStats = {};
+
+getActiveTodoItems(todo);
+getDoneTodoItems(done);
+
+function getActiveTodoItems(todoList) {
+  const activeCategory = subtractionQuantityCategory(todoList);
+  const activeList = parseActiveTodo(activeCategory);
+  console.log('🚀 - activeList', activeList);
+  stateStats = activeList;
+  // for (const key in activeCategory) {
+  //   console.log(`${key}: ${activeCategory[key].active}`);
+  // }
+
+  //   {
+  //     "shopping list": {
+  //         "active": 2,
+  //         "archived": 0,
+  //         "done": 0
+  //     },
+  //     "new feature": {
+  //         "active": 1,
+  //         "archived": 0,
+  //         "done": 0
+  //     },
+  //     "remind": {
+  //         "active": 1,
+  //         "archived": 0,
+  //         "done": 0
+  //     },
+  //     "goals": {
+  //         "active": 1,
+  //         "archived": 0,
+  //         "done": 0
+  //     }
+  // }
 }
 
-function getActiveTodoItems(todo) {
-  const data = todo.map(item => item.category);
-  const allCategory = data.reduce(getStatsFromObj, {});
-  const statsList = createActiveStatsDataArray(allCategory);
-  const markupActiveStats = todoData.makerStatsItem(statsList);
-  refs.statsList.innerHTML = '';
-  refs.statsList.insertAdjacentHTML('afterbegin', markupActiveStats);
+function getDoneTodoItems(todoList) {
+  const doneCategory = subtractionQuantityCategory(todoList);
+  const doneList = parseDoneTodo(doneCategory);
+  console.log('🚀 - doneList', doneList);
+}
+
+//
+//
+//
+//
+
+//
+//
+//
+//
+//
+
+//
+
+//-----------------------------------------------------------
+
+function subtractionQuantityCategory(todoList) {
+  const data = todoList.map(item => item.category);
+  const subtractedCategory = data.reduce(getStatsFromObj, {});
+  return subtractedCategory;
 }
 
 function getStatsFromObj(acc, item) {
@@ -31,18 +79,19 @@ function getStatsFromObj(acc, item) {
   return acc;
 }
 
-function createActiveStatsDataArray(obj) {
-  const data = [];
+function parseActiveTodo(obj) {
+  let todo = [];
   for (const key in obj) {
-    data.push({
-      name: key,
-      active: obj[key],
-      archived: 0,
-      done: 0,
-    });
+    todo.push({ name: key, active: obj[key], archived: 0, done: 0 });
   }
-
-  return data;
+  return todo;
 }
 
-export { getStats };
+function parseDoneTodo(obj) {
+  let todo = [];
+  for (const key in obj) {
+    todo.push({ name: key, done: obj[key] });
+  }
+  return todo;
+}
+

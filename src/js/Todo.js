@@ -1,5 +1,5 @@
 import refs from './refs';
-import { handleParseToDo, handleParseStats } from './handlebars';
+import { handleParseToDo } from './handlebars';
 
 export default class Todo {
   constructor() {
@@ -64,12 +64,15 @@ export default class Todo {
     });
   }
 
-  getTodoListFromLocalStorage() {
-    const data = this.getLocalStorage('todo');
-    if (data.length > 0) {
-      const dataList = this.makerTodoItem(data);
+  getTodoDataFromLocalStorage() {
+    const todoData = this.getLocalStorage('todo');
+    const doneData = this.getLocalStorage('done');
+
+    if (todoData.length > 0 || doneData.length > 0) {
+      const dataList = this.makerTodoItem(todoData);
       refs.todoList.insertAdjacentHTML('beforeend', dataList);
-      this.setTodoData(data);
+      this.setDoneList(doneData);
+      this.setTodoData(todoData);
     } else {
       return;
     }
@@ -83,19 +86,6 @@ export default class Todo {
 
   setDoneList(newData) {
     this.doneList = newData;
-  }
-
-  makerStatsItem(data) {
-    return handleParseStats(data);
-  }
-
-  getDoneListFromLocalStorage() {
-    const data = this.getLocalStorage('done');
-    if (data.length > 0) {
-      this.setDoneList(data);
-    } else {
-      return;
-    }
   }
 
   relocateTodoItemToDoneList(id) {
