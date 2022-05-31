@@ -1,5 +1,5 @@
 import refs from './refs';
-import { handleParseToDo } from './handlebars';
+import { handleParseToDo, handleParseStats } from './handlebars';
 
 export default class Todo {
   constructor() {
@@ -93,6 +93,10 @@ export default class Todo {
     this.doneList.unshift(todoItem);
     this.removeTodoItemById(id, 'todo');
     this.setLocalStorage(todoItem, 'done');
+  }
+
+  makerStatsMarkup(data) {
+    return handleParseStats(data);
   }
 
   //common

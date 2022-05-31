@@ -1,6 +1,7 @@
 import refs from './refs';
 import { todoData } from './todo-modal';
 import { modal } from './todo-modal';
+import { getStats } from './stats';
 import changeStyleForEditModal from './helpers/changeStyleForEditModal';
 
 refs.todoList.addEventListener('click', onOperationsTodo);
@@ -27,6 +28,7 @@ function onOperationsTodo(event) {
 
 function doneTodoOperation(id) {
   todoData.relocateTodoItemToDoneList(id);
+  getStats();
 }
 
 function editTodoOperation(e, id) {
@@ -46,4 +48,5 @@ function removeTodoOperation(id) {
 
 function archiveTodoOperation() {
   console.log('archive');
+  getStats();
 }

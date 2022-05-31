@@ -4,64 +4,52 @@ import { todoData } from './todo-modal';
 const todo = todoData.getTodoData();
 const done = todoData.getDoneList();
 
-let stateStats = {};
+let stateStats = [
+  {
+    name: 'goals',
+    active: 0,
+    archived: 0,
+    done: 0,
+  },
+  {
+    name: 'new feature',
+    active: 0,
+    archived: 0,
+    done: 0,
+  },
+  {
+    name: 'remind',
+    active: 0,
+    archived: 0,
+    done: 0,
+  },
+  {
+    name: 'shopping list',
+    active: 0,
+    archived: 0,
+    done: 0,
+  },
+];
 
-getActiveTodoItems(todo);
-getDoneTodoItems(done);
+getStats();
+
+function getStats() {
+  getActiveTodoItems(todo);
+  getDoneTodoItems(done);
+  const markup = todoData.makerStatsMarkup(stateStats);
+  refs.statsList.innerHTML = '';
+  refs.statsList.insertAdjacentHTML('beforeend', markup);
+}
 
 function getActiveTodoItems(todoList) {
   const activeCategory = subtractionQuantityCategory(todoList);
-  const activeList = parseActiveTodo(activeCategory);
-  console.log('🚀 - activeListfffffff', activeList);
-  stateStats = activeList;
-  // for (const key in activeCategory) {
-  //   console.log(`${key}: ${activeCategory[key].active}`);
-  // }
-
-  //   {
-  //     "shopping list": {
-  //         "active": 2,
-  //         "archived": 0,
-  //         "done": 0
-  //     },
-  //     "new feature": {
-  //         "active": 1,
-  //         "archived": 0,
-  //         "done": 0
-  //     },
-  //     "remind": {
-  //         "active": 1,
-  //         "archived": 0,
-  //         "done": 0
-  //     },
-  //     "goals": {
-  //         "active": 1,
-  //         "archived": 0,
-  //         "done": 0
-  //     }
-  // }
+  saveActiveItems(activeCategory);
 }
 
-function getDoneTodoItems(todoList) {
-  const doneCategory = subtractionQuantityCategory(todoList);
-  const doneList = parseDoneTodo(doneCategory);
-  console.log('🚀 - doneList', doneList);
+function getDoneTodoItems(doneList) {
+  const doneCategory = subtractionQuantityCategory(doneList);
+  saveDoneItems(doneCategory);
 }
-
-//
-//
-//
-//
-
-//
-//
-//
-//
-//
-
-//
-
-//-----------------------------------------------------------
 
 function subtractionQuantityCategory(todoList) {
   const data = todoList.map(item => item.category);
@@ -79,18 +67,24 @@ function getStatsFromObj(acc, item) {
   return acc;
 }
 
-function parseActiveTodo(obj) {
-  let todo = [];
+function saveActiveItems(obj) {
   for (const key in obj) {
-    todo.push({ name: key, active: obj[key], archived: 0, done: 0 });
+    for (const item of stateStats) {
+      if (item.name === key) {
+        item.active = obj[key];
+      }
+    }
   }
-  return todo;
 }
 
-function parseDoneTodo(obj) {
-  let todo = [];
+function saveDoneItems(obj) {
   for (const key in obj) {
-    todo.push({ name: key, done: obj[key] });
+    for (const item of stateStats) {
+      if (item.name === key) {
+        item.done = obj[key];
+      }
+    }
   }
-  return todo;
 }
+
+export { getStats };

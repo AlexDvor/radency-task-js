@@ -12,9 +12,6 @@ export default {
   todoList: document.querySelector('.todo-list'),
 
   // count section:
-
   statsList: document.querySelector('.count-list'),
-  statsActive: document.querySelector('[data-count="active"]'),
-  statsArchived: document.querySelector('[data-count="archived"]'),
-  statsDone: document.querySelector('[data-count="done"]'),
+  countValue: document.querySelectorAll('.count-value'),
 };
