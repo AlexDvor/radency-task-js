@@ -1,9 +1,6 @@
 import refs from './refs';
 import { todoData } from './todo-modal';
 
-const todo = todoData.getTodoData();
-const done = todoData.getDoneList();
-
 let stateStats = [
   {
     name: 'goals',
@@ -31,14 +28,30 @@ let stateStats = [
   },
 ];
 
+const todo = todoData.getTodoData();
+const done = todoData.getDoneList();
+
 getStats();
 
 function getStats() {
   getActiveTodoItems(todo);
   getDoneTodoItems(done);
-  const markup = todoData.makerStatsMarkup(stateStats);
-  refs.statsList.innerHTML = '';
-  refs.statsList.insertAdjacentHTML('beforeend', markup);
+  createMarkupStats(stateStats);
+}
+
+function updateActiveItem(todoItem) {
+  const { category } = todoItem;
+  stateStats.map(item => {
+    if (item.name === category) {
+      if (item.active === 0) {
+        return;
+      } else {
+        item.active -= 1;
+      }
+    }
+  });
+
+  createMarkupStats(stateStats);
 }
 
 function getActiveTodoItems(todoList) {
@@ -87,4 +100,10 @@ function saveDoneItems(obj) {
   }
 }
 
-export { getStats };
+function createMarkupStats(state) {
+  const markup = todoData.makerStatsMarkup(state);
+  refs.statsList.innerHTML = '';
+  refs.statsList.insertAdjacentHTML('beforeend', markup);
+}
+
+export { getStats, updateActiveItem };

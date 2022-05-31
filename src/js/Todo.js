@@ -93,6 +93,7 @@ export default class Todo {
     this.doneList.unshift(todoItem);
     this.removeTodoItemById(id, 'todo');
     this.setLocalStorage(todoItem, 'done');
+    return todoItem;
   }
 
   makerStatsMarkup(data) {
