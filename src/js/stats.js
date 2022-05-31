@@ -12,7 +12,7 @@ getDoneTodoItems(done);
 function getActiveTodoItems(todoList) {
   const activeCategory = subtractionQuantityCategory(todoList);
   const activeList = parseActiveTodo(activeCategory);
-  console.log('🚀 - activeList', activeList);
+  console.log('🚀 - activeListfffffff', activeList);
   stateStats = activeList;
   // for (const key in activeCategory) {
   //   console.log(`${key}: ${activeCategory[key].active}`);
@@ -94,4 +94,3 @@ function parseDoneTodo(obj) {
   }
   return todo;
 }
-
