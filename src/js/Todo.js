@@ -4,8 +4,8 @@ import { handleParseToDo, handleParseStats } from './handlebars';
 export default class Todo {
   constructor() {
     this.todoData = [];
-    this.archiveData = [];
     this.doneList = [];
+    this.archiveList = [];
   }
 
   // todo
@@ -67,18 +67,20 @@ export default class Todo {
   getTodoDataFromLocalStorage() {
     const todoData = this.getLocalStorage('todo');
     const doneData = this.getLocalStorage('done');
+    const archivedData = this.getLocalStorage('archived');
 
-    if (todoData.length > 0 || doneData.length > 0) {
+    if (todoData.length > 0 || doneData.length > 0 || archivedData.length > 0) {
       const dataList = this.makerTodoItem(todoData);
       refs.todoList.insertAdjacentHTML('beforeend', dataList);
       this.setDoneList(doneData);
       this.setTodoData(todoData);
+      this.setArchiveList(archivedData);
     } else {
       return;
     }
   }
 
-  // stats
+  // stats-doneList
 
   getDoneList() {
     return this.doneList;
@@ -98,6 +100,24 @@ export default class Todo {
 
   makerStatsMarkup(data) {
     return handleParseStats(data);
+  }
+
+  // stats-archiveData
+
+  getArchiveList() {
+    return this.archiveList;
+  }
+
+  setArchiveList(newData) {
+    this.archiveList = newData;
+  }
+
+  relocateTodoItemToArchiveList(id) {
+    const todoItem = this.getTodoData().find(item => item.id === id);
+    this.archiveList.unshift(todoItem);
+    this.removeTodoItemById(id, 'todo');
+    this.setLocalStorage(todoItem, 'archived');
+    return todoItem;
   }
 
   //common

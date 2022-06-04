@@ -1,7 +1,7 @@
 import refs from './refs';
 import { todoData } from './todo-modal';
 import { modal } from './todo-modal';
-import { getStats, updateActiveItem } from './stats';
+import { updateDoneItem, updateArchivedItem } from './stats';
 import changeStyleForEditModal from './helpers/changeStyleForEditModal';
 
 refs.todoList.addEventListener('click', onOperationsTodo);
@@ -19,7 +19,7 @@ function onOperationsTodo(event) {
       editTodoOperation(event, currentId);
       break;
     case 'archive':
-      archiveTodoOperation();
+      archiveTodoOperation(currentId);
       break;
     case 'remove':
       removeTodoOperation(currentId);
@@ -28,8 +28,7 @@ function onOperationsTodo(event) {
 
 function doneTodoOperation(id) {
   const relocatedItem = todoData.relocateTodoItemToDoneList(id);
-  getStats();
-  updateActiveItem(relocatedItem);
+  updateDoneItem(relocatedItem);
 }
 
 function editTodoOperation(e, id) {
@@ -47,7 +46,7 @@ function removeTodoOperation(id) {
   todoData.removeTodoItemById(id, 'todo');
 }
 
-function archiveTodoOperation() {
-  console.log('archive');
-  getStats();
+function archiveTodoOperation(id) {
+  const relocatedItem = todoData.relocateTodoItemToArchiveList(id);
+  updateArchivedItem(relocatedItem);
 }

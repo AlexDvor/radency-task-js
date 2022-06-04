@@ -30,16 +30,18 @@ let stateStats = [
 
 const todo = todoData.getTodoData();
 const done = todoData.getDoneList();
+const archived = todoData.getArchiveList();
 
 getStats();
 
 function getStats() {
   getActiveTodoItems(todo);
   getDoneTodoItems(done);
+  getArchivedTodoItems(archived);
   createMarkupStats(stateStats);
 }
 
-function updateActiveItem(todoItem) {
+function updateDoneItem(todoItem) {
   const { category } = todoItem;
   stateStats.map(item => {
     if (item.name === category) {
@@ -47,6 +49,23 @@ function updateActiveItem(todoItem) {
         return;
       } else {
         item.active -= 1;
+        item.done += 1;
+      }
+    }
+  });
+
+  createMarkupStats(stateStats);
+}
+
+function updateArchivedItem(todoItem) {
+  const { category } = todoItem;
+  stateStats.map(item => {
+    if (item.name === category) {
+      if (item.active === 0) {
+        return;
+      } else {
+        item.active -= 1;
+        item.archived += 1;
       }
     }
   });
@@ -62,6 +81,11 @@ function getActiveTodoItems(todoList) {
 function getDoneTodoItems(doneList) {
   const doneCategory = subtractionQuantityCategory(doneList);
   saveDoneItems(doneCategory);
+}
+
+function getArchivedTodoItems(archivedList) {
+  const archivedCategory = subtractionQuantityCategory(archivedList);
+  saveArchivedItems(archivedCategory);
 }
 
 function subtractionQuantityCategory(todoList) {
@@ -100,10 +124,20 @@ function saveDoneItems(obj) {
   }
 }
 
+function saveArchivedItems(obj) {
+  for (const key in obj) {
+    for (const item of stateStats) {
+      if (item.name === key) {
+        item.archived = obj[key];
+      }
+    }
+  }
+}
+
 function createMarkupStats(state) {
   const markup = todoData.makerStatsMarkup(state);
   refs.statsList.innerHTML = '';
   refs.statsList.insertAdjacentHTML('beforeend', markup);
 }
 
-export { getStats, updateActiveItem };
+export { updateDoneItem, updateArchivedItem };
