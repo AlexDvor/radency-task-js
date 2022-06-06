@@ -1,5 +1,6 @@
 import refs from './refs';
 import { handleParseToDo, handleParseStats } from './handlebars';
+import activateTooltips from './tooltips';
 
 export default class Todo {
   constructor() {
@@ -9,7 +10,6 @@ export default class Todo {
   }
 
   // todo
-
   getTodoData() {
     return this.todoData;
   }
@@ -74,6 +74,7 @@ export default class Todo {
     if (todoData.length > 0 || doneData.length > 0 || archivedData.length > 0) {
       const dataList = this.makerTodoItem(todoData);
       refs.todoList.insertAdjacentHTML('beforeend', dataList);
+      activateTooltips();
       this.setDoneList(doneData);
       this.setTodoData(todoData);
       this.setArchiveList(archivedData);
@@ -83,7 +84,6 @@ export default class Todo {
   }
 
   // stats-doneList
-
   getDoneList() {
     return this.doneList;
   }

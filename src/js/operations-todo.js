@@ -2,10 +2,8 @@ import refs from './refs';
 import { todoData } from './todo-modal';
 import { modal } from './todo-modal';
 import { updateDoneItem, updateArchivedItem } from './stats';
-import { tooltipParams } from './helpers/tooltip-params';
 import { updateStatsActiveItem } from './stats';
 import changeStyleForEditModal from './helpers/changeStyleForEditModal';
-import tippy from 'tippy.js';
 
 refs.todoList.addEventListener('click', onOperationsTodo);
 
@@ -54,23 +52,3 @@ function archiveTodoOperation(id) {
   const relocatedItem = todoData.relocateTodoItemToArchiveList(id);
   updateArchivedItem(relocatedItem);
 }
-
-tippy('#doneBtn', {
-  content: 'Done',
-  ...tooltipParams,
-});
-
-tippy('#editBtn', {
-  content: 'Edit',
-  ...tooltipParams,
-});
-
-tippy('#archiveBtn', {
-  content: 'Archive',
-  ...tooltipParams,
-});
-
-tippy('#removeBtn', {
-  content: 'Delete',
-  ...tooltipParams,
-});

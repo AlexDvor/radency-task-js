@@ -2,21 +2,18 @@ import refs from './refs';
 import Todo from './Todo';
 import Modal from './Modal';
 import getSelectIndex from './helpers/select-index';
-import tippy from 'tippy.js';
-import { tooltipParams } from './helpers/tooltip-params';
+import activateTooltips from './tooltips';
 import { getStats } from './stats';
 
 const todoData = new Todo();
 const modal = new Modal();
 
 todoData.getTodoDataFromLocalStorage();
-// buttons Listener
+
 refs.creatButtonItem.addEventListener('click', onOpenModal);
-// select and form Listener
 refs.selectOptions.addEventListener('click', onClickSelectOptions);
 refs.selectContent.addEventListener('click', onClickSelectContent);
 refs.form.addEventListener('submit', onFormSubmit);
-// modal Listener
 refs.exitIcon.addEventListener('click', onCloseModal);
 refs.overlay.addEventListener('click', onBackdropClick);
 
@@ -60,15 +57,11 @@ function onFormSubmit(e) {
   if (result && typeBtn === 'create') {
     todoData.addTodoItem(result);
     getStats();
+    activateTooltips();
   }
   if (result && typeBtn === 'confirm') {
     todoData.editTodoItem(result);
   }
 }
-
-tippy(refs.creatButtonItem, {
-  content: 'Add todo',
-  ...tooltipParams,
-});
 
 export { todoData, modal };
