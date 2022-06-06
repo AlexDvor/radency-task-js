@@ -2,6 +2,7 @@ import refs from './refs';
 import { todoData } from './todo-modal';
 import { modal } from './todo-modal';
 import { updateDoneItem, updateArchivedItem } from './stats';
+import { tooltipParams } from './helpers/tooltip-params';
 import changeStyleForEditModal from './helpers/changeStyleForEditModal';
 import tippy from 'tippy.js';
 
@@ -54,28 +55,20 @@ function archiveTodoOperation(id) {
 
 tippy('#doneBtn', {
   content: 'Done',
-  delay: [500, 200],
-  animation: 'scale',
-  theme: 'light',
+  ...tooltipParams,
 });
 
 tippy('#editBtn', {
   content: 'Edit',
-  delay: [500, 200],
-  animation: 'scale',
-  theme: 'light',
+  ...tooltipParams,
 });
 
 tippy('#archiveBtn', {
   content: 'Archive',
-  delay: [500, 200],
-  animation: 'scale',
-  theme: 'light',
+  ...tooltipParams,
 });
 
 tippy('#removeBtn', {
   content: 'Delete',
-  delay: [500, 200],
-  animation: 'scale',
-  theme: 'light',
+  ...tooltipParams,
 });

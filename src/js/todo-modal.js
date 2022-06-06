@@ -4,7 +4,6 @@ import Modal from './Modal';
 import getSelectIndex from './helpers/select-index';
 import tippy from 'tippy.js';
 import { tooltipParams } from './helpers/tooltip-params';
-import { getStats } from './stats';
 
 const todoData = new Todo();
 const modal = new Modal();
