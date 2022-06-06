@@ -28,22 +28,18 @@ let stateStats = [
   },
 ];
 
-const todo = todoData.getTodoData();
-const done = todoData.getDoneList();
-const archived = todoData.getArchiveList();
-
 getStats();
 
 function getStats() {
-  getActiveTodoItems(todo);
-  getDoneTodoItems(done);
-  getArchivedTodoItems(archived);
+  getActiveTodoItems(todoData.getTodoData());
+  getDoneTodoItems(todoData.getDoneList());
+  getArchivedTodoItems(todoData.getArchiveList());
   createMarkupStats(stateStats);
 }
 
 function updateDoneItem(todoItem) {
   const { category } = todoItem;
-  stateStats.map(item => {
+  stateStats.forEach(item => {
     if (item.name === category) {
       if (item.active === 0) {
         return;
@@ -55,6 +51,22 @@ function updateDoneItem(todoItem) {
   });
 
   createMarkupStats(stateStats);
+}
+
+function updateStatsActiveItem(todoItem) {
+  const { category } = todoItem;
+  stateStats.forEach(item => {
+    if (item.name === category) {
+      if (item.active === 0) {
+        return;
+      } else {
+        item.active -= 1;
+      }
+    }
+  });
+
+  createMarkupStats(stateStats);
+  console.log('🚀POSLE - stateStats', stateStats);
 }
 
 function updateArchivedItem(todoItem) {
@@ -140,4 +152,4 @@ function createMarkupStats(state) {
   refs.statsList.insertAdjacentHTML('beforeend', markup);
 }
 
-export { updateDoneItem, updateArchivedItem };
+export { updateDoneItem, updateArchivedItem, updateStatsActiveItem, getStats };

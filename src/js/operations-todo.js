@@ -3,6 +3,7 @@ import { todoData } from './todo-modal';
 import { modal } from './todo-modal';
 import { updateDoneItem, updateArchivedItem } from './stats';
 import { tooltipParams } from './helpers/tooltip-params';
+import { updateStatsActiveItem } from './stats';
 import changeStyleForEditModal from './helpers/changeStyleForEditModal';
 import tippy from 'tippy.js';
 
@@ -29,8 +30,8 @@ function onOperationsTodo(event) {
 }
 
 function doneTodoOperation(id) {
-  const relocatedItem = todoData.relocateTodoItemToDoneList(id);
-  updateDoneItem(relocatedItem);
+  const currentItem = todoData.relocateTodoItemToDoneList(id);
+  updateDoneItem(currentItem);
 }
 
 function editTodoOperation(e, id) {
@@ -45,7 +46,8 @@ function editTodoOperation(e, id) {
 }
 
 function removeTodoOperation(id) {
-  todoData.removeTodoItemById(id, 'todo');
+  const currentItem = todoData.removeTodoItemById(id, 'todo');
+  updateStatsActiveItem(currentItem);
 }
 
 function archiveTodoOperation(id) {

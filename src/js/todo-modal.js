@@ -4,6 +4,7 @@ import Modal from './Modal';
 import getSelectIndex from './helpers/select-index';
 import tippy from 'tippy.js';
 import { tooltipParams } from './helpers/tooltip-params';
+import { getStats } from './stats';
 
 const todoData = new Todo();
 const modal = new Modal();
@@ -58,34 +59,11 @@ function onFormSubmit(e) {
 
   if (result && typeBtn === 'create') {
     todoData.addTodoItem(result);
+    getStats();
   }
   if (result && typeBtn === 'confirm') {
     todoData.editTodoItem(result);
-    // console.log(result);
   }
-
-  // e.preventDefault();
-  // const formData = e.currentTarget.elements;
-  // const category = formData.category.value;
-  // const content = formData.content.value;
-  // const objective = formData.objective.value;
-  // const currentData = getCurrentCalendarData();
-  // const currentTime = getCurrentTime();
-  // const id = uuidv4().slice(0, 6);
-  // const isValidForm = validateForm(formData);
-
-  // if (isValidForm) {
-  //   todoData.addTodoItem({ id, category, content, objective, currentData, currentTime });
-  //   onCloseModal();
-  //   resetForm();
-  // }
-  // const contentValude = formData.content.value;
-  // const data = {};
-  // const formData = new FormData(e.currentTarget);
-  // formData.forEach((value, key) => {
-  //   data[key] = value;
-  // });
-  //////////////
 }
 
 tippy(refs.creatButtonItem, {

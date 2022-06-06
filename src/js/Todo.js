@@ -25,12 +25,14 @@ export default class Todo {
   }
 
   removeTodoItemById(id, nameStor) {
+    const currentTodo = this.getTodoData().find(item => item.id === id);
     const filteredData = this.getTodoData().filter(item => item.id !== id);
     const todoItem = this.makerTodoItem(filteredData);
     this.setTodoData(filteredData);
     this.setLocalStorage(filteredData, nameStor);
     refs.todoList.innerHTML = '';
     refs.todoList.insertAdjacentHTML('beforeend', todoItem);
+    return currentTodo;
   }
 
   editTodoItem(todo) {
