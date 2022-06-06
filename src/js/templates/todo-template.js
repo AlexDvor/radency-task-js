@@ -19,21 +19,21 @@ export default function toDoTemplate() {
 
   <ul class="card-button__list">
 
-    <li class="card-button__item">
-      <button class="card-button__btn" type="button" data-action="done">
+    <li  class="card-button__item">
+      <button id='doneBtn' class="card-button__btn" type="button" data-action="done">
         <span class="card-button__icon"> <i class="fa-solid fa-check fa-todo-hover" data-action="done"></i>
         </span>
         </button>
     </li>
 
     <li class="card-button__item">
-      <button class="card-button__btn" type="button" data-action="edit">
+      <button id='editBtn' class="card-button__btn" type="button" data-action="edit">
         <span class="card-button__icon"> <i class="fa-solid fa-pen fa-todo-hover" data-action="edit"></i></span>
         </button>
     </li>
 
     <li class="card-button__item">
-      <button class="card-button__btn" type="button" data-action="archive">
+      <button  id='archiveBtn'class="card-button__btn" type="button" data-action="archive">
         <span class="card-button__icon">
           <i class="fa-solid fa-box-archive fa-todo-hover" data-action="archive"></i>
           </span>
@@ -41,7 +41,7 @@ export default function toDoTemplate() {
     </li>
 
     <li class="card-button__item">
-      <button class="card-button__btn" type="button" data-action="remove">
+      <button  id='removeBtn'class="card-button__btn" type="button" data-action="remove">
         <span class="card-button__icon"> <i class="fa-solid fa-trash-can fa-todo-hover" data-action="remove"></i>
         </span>
         </button>

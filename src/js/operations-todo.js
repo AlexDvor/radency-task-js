@@ -3,6 +3,7 @@ import { todoData } from './todo-modal';
 import { modal } from './todo-modal';
 import { updateDoneItem, updateArchivedItem } from './stats';
 import changeStyleForEditModal from './helpers/changeStyleForEditModal';
+import tippy from 'tippy.js';
 
 refs.todoList.addEventListener('click', onOperationsTodo);
 
@@ -50,3 +51,31 @@ function archiveTodoOperation(id) {
   const relocatedItem = todoData.relocateTodoItemToArchiveList(id);
   updateArchivedItem(relocatedItem);
 }
+
+tippy('#doneBtn', {
+  content: 'Done',
+  delay: [500, 200],
+  animation: 'scale',
+  theme: 'light',
+});
+
+tippy('#editBtn', {
+  content: 'Edit',
+  delay: [500, 200],
+  animation: 'scale',
+  theme: 'light',
+});
+
+tippy('#archiveBtn', {
+  content: 'Archive',
+  delay: [500, 200],
+  animation: 'scale',
+  theme: 'light',
+});
+
+tippy('#removeBtn', {
+  content: 'Delete',
+  delay: [500, 200],
+  animation: 'scale',
+  theme: 'light',
+});

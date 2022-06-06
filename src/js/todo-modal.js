@@ -2,6 +2,8 @@ import refs from './refs';
 import Todo from './Todo';
 import Modal from './Modal';
 import getSelectIndex from './helpers/select-index';
+import tippy from 'tippy.js';
+import { tooltipParams } from './helpers/tooltip-params';
 import { getStats } from './stats';
 
 const todoData = new Todo();
@@ -87,5 +89,10 @@ function onFormSubmit(e) {
   // });
   //////////////
 }
+
+tippy(refs.creatButtonItem, {
+  content: 'Add todo',
+  ...tooltipParams,
+});
 
 export { todoData, modal };
