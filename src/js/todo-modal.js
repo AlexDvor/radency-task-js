@@ -59,7 +59,6 @@ function onFormSubmit(e) {
 
   if (result && typeBtn === 'create') {
     todoData.addTodoItem(result);
-    getStats();
   }
   if (result && typeBtn === 'confirm') {
     todoData.editTodoItem(result);
