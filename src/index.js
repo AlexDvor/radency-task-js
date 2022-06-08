@@ -4,3 +4,4 @@ import './js/Todo';
 import './js/stats';
 import './js/todo-modal';
 import './js/operations-todo';
+import './js/vertical-todo-menu';

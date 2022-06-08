@@ -10,8 +10,9 @@ export default {
   selectField: document.querySelector('.select-field'),
   form: document.querySelector('.form'),
   todoList: document.querySelector('.todo-list'),
-
   // count section:
   statsList: document.querySelector('.count-list'),
   countValue: document.querySelectorAll('.count-value'),
+  //
+  removeAllBtn: document.querySelector('[data-action="removeAll"]'),
 };

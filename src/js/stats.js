@@ -35,6 +35,7 @@ function getStats() {
   getDoneTodoItems(todoData.getDoneList());
   getArchivedTodoItems(todoData.getArchiveList());
   createMarkupStats(stateStats);
+  console.log('stateStats', stateStats);
 }
 
 function updateDoneItem(todoItem) {
@@ -152,4 +153,13 @@ function createMarkupStats(state) {
   refs.statsList.insertAdjacentHTML('beforeend', markup);
 }
 
-export { updateDoneItem, updateArchivedItem, updateStatsActiveItem, getStats };
+function resetStatsValue() {
+  stateStats.forEach(item => {
+    item.active = 0;
+    item.done = 0;
+    item.archived = 0;
+  });
+  createMarkupStats(stateStats);
+}
+
+export { updateDoneItem, updateArchivedItem, updateStatsActiveItem, getStats, resetStatsValue };

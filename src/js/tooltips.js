@@ -1,6 +1,11 @@
 import refs from './refs';
 import tippy from 'tippy.js';
-import { tooltipParams } from './helpers/tooltip-params';
+
+const tooltipParams = {
+  delay: [500, 200],
+  animation: 'scale',
+  theme: 'light',
+};
 
 export default function activateTooltips() {
   tippy('#doneBtn', {
@@ -25,6 +30,12 @@ export default function activateTooltips() {
 
   tippy(refs.creatButtonItem, {
     content: 'Add todo',
+    ...tooltipParams,
+  });
+
+  tippy('#removeAllBtn', {
+    content: 'Delete All',
+    placement: 'left',
     ...tooltipParams,
   });
 }

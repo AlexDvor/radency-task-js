@@ -35,6 +35,16 @@ export default class Todo {
     return currentTodo;
   }
 
+  removeAllTodoData() {
+    this.setTodoData([]);
+    this.setArchiveList([]);
+    this.setDoneList([]);
+    this.setLocalStorage([], 'archived');
+    this.setLocalStorage([], 'done');
+    this.setLocalStorage([], 'todo');
+    refs.todoList.innerHTML = '';
+  }
+
   editTodoItem(todo) {
     const indexEl = this.getTodoIndex(todo);
     const itemToDo = this.getTodoData().find(item => item.id === todo.id);
