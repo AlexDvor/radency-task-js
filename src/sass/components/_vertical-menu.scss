@@ -6,6 +6,7 @@
   top: 54px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
+  // right: 0px;
   right: -63px;
   background-color: #e5e5e5;
   padding: 50px 25px;
@@ -47,6 +48,19 @@
   transition: all 0.2s ease;
   padding: 0;
   cursor: pointer;
+
+  &:disabled {
+    .fa-todo-hover {
+      color: rgb(143, 129, 129);
+    }
+    &:hover {
+      background-color: #e5e5e5;
+      border: solid 1px rgba(11, 27, 34, 0.5);
+      .fa-todo-hover {
+        color: rgb(117, 105, 105);
+      }
+    }
+  }
 
   &:hover {
     background-color: $todo-button-hover;

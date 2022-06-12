@@ -9,6 +9,7 @@ const todoData = new Todo();
 const modal = new Modal();
 
 todoData.getTodoDataFromLocalStorage();
+activateTooltips();
 
 refs.creatButtonItem.addEventListener('click', onOpenModal);
 refs.selectOptions.addEventListener('click', onClickSelectOptions);

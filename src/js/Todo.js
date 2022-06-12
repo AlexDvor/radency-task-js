@@ -84,7 +84,6 @@ export default class Todo {
     if (todoData.length > 0 || doneData.length > 0 || archivedData.length > 0) {
       const dataList = this.makerTodoItem(todoData);
       refs.todoList.insertAdjacentHTML('beforeend', dataList);
-      activateTooltips();
       this.setDoneList(doneData);
       this.setTodoData(todoData);
       this.setArchiveList(archivedData);
@@ -149,5 +148,13 @@ export default class Todo {
     if (Array.isArray(data)) {
       localStorage.setItem(nameStor, JSON.stringify(data));
     }
+  }
+
+  isEmptyData() {
+    const data =
+      this.getTodoData().length > 0 ||
+      this.getArchiveList().length > 0 ||
+      this.getDoneList().length > 0;
+    return data ? true : false;
   }
 }

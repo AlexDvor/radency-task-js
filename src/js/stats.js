@@ -1,5 +1,6 @@
 import refs from './refs';
 import { todoData } from './todo-modal';
+import { checkingForDisabledBtn } from './vertical-menu';
 
 let stateStats = [
   {
@@ -34,6 +35,7 @@ function getStats() {
   getActiveTodoItems(todoData.getTodoData());
   getDoneTodoItems(todoData.getDoneList());
   getArchivedTodoItems(todoData.getArchiveList());
+  checkingForDisabledBtn();
   createMarkupStats(stateStats);
 }
 

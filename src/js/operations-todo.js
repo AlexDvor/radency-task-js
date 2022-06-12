@@ -4,6 +4,7 @@ import { modal } from './todo-modal';
 import { updateDoneItem, updateArchivedItem } from './stats';
 import { updateStatsActiveItem } from './stats';
 import changeStyleForEditModal from './helpers/changeStyleForEditModal';
+import { checkingForDisabledBtn } from './vertical-menu';
 
 refs.todoList.addEventListener('click', onOperationsTodo);
 
@@ -46,6 +47,7 @@ function editTodoOperation(e, id) {
 function removeTodoOperation(id) {
   const currentItem = todoData.removeTodoItemById(id, 'todo');
   updateStatsActiveItem(currentItem);
+  checkingForDisabledBtn();
 }
 
 function archiveTodoOperation(id) {
