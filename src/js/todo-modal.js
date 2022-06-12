@@ -1,6 +1,6 @@
 import refs from './refs';
-import Todo from './Todo';
-import Modal from './Modal';
+import Todo from './todo';
+import Modal from './modal';
 import getSelectIndex from './helpers/select-index';
 import activateTooltips from './tooltips';
 import { getStats } from './stats';

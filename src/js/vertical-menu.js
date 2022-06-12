@@ -1,5 +1,5 @@
 import refs from './refs';
-import ConfirmModal from './confirmModal';
+import ConfirmModal from './confirm-modal';
 
 const confirmModal = new ConfirmModal();
 

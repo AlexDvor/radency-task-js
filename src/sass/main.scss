@@ -7,9 +7,8 @@
 @import './utils/vars';
 @import './utils/common';
 @import './utils/container';
-@import './components/header';
 @import './components/todo-list';
-@import './components/create-todo-modal';
-@import './components/count-result';
-@import './components/_vertical-todo-menu';
+@import './components/todo-modal';
+@import './components/todo-stats';
+@import './components/vertical-menu';
 @import './components/confirm-modal';

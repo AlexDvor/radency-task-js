@@ -35,7 +35,6 @@ function getStats() {
   getDoneTodoItems(todoData.getDoneList());
   getArchivedTodoItems(todoData.getArchiveList());
   createMarkupStats(stateStats);
-  console.log('stateStats', stateStats);
 }
 
 function updateDoneItem(todoItem) {
