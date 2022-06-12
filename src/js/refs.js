@@ -13,6 +13,9 @@ export default {
   // count section:
   statsList: document.querySelector('.count-list'),
   countValue: document.querySelectorAll('.count-value'),
-  //
+  //vertical todo modal
+  confirmationModal: document.querySelector('.modal-box'),
   removeAllBtn: document.querySelector('[data-action="removeAll"]'),
+  confirmBtn: document.querySelector('[data-action="confirm"]'),
+  cancelBtn: document.querySelector('[data-action="cancel"]'),
 };

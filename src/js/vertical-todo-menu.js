@@ -1,10 +1,10 @@
 import refs from './refs';
-import { todoData } from './todo-modal';
-import { resetStatsValue } from './stats';
+import ConfirmModal from './confirmModal';
+
+const confirmModal = new ConfirmModal();
 
 refs.removeAllBtn.addEventListener('click', onClickRemove);
 
 function onClickRemove() {
-  todoData.removeAllTodoData();
-  resetStatsValue();
+  confirmModal.openModal();
 }

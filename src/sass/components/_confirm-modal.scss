@@ -1,0 +1,79 @@
+.modal-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity $modal-animation-duration $modal-timing-function;
+}
+
+.modal-box--open {
+  opacity: 1;
+  pointer-events: initial;
+}
+
+.modal-box__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(44, 44, 44, 0.8);
+  backdrop-filter: blur(5px);
+}
+
+.modal-box__content {
+  position: relative;
+  padding: 50px;
+  transform: scale(0.95);
+  transition: transform $modal-animation-duration $modal-timing-function;
+  border-radius: 5px;
+  background: $modal-background-color;
+}
+
+.modal-box__wrapper-icon {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+}
+
+.modal-box___icon-exit {
+  font-size: 20px;
+  color: white;
+}
+
+.modal-box.modal-box--open .modal-box__content {
+  transform: scale(1);
+}
+
+.modal-box__title {
+  text-align: center;
+  color: $modal-title-color;
+}
+
+.wrapper-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button-item {
+  width: 100px;
+  height: 40px;
+  transition: all 0.2s ease;
+  border: none;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: $todo-button-hover;
+    color: white;
+  }
+
+  &:not(:first-child) {
+    margin-left: 10px;
+  }
+}
