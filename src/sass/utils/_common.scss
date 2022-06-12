@@ -3,6 +3,7 @@ body {
   background: $body-background-color;
   background-size: cover;
   background-attachment: fixed;
+  overflow: hidden;
   color: $body-font-color;
 }
 

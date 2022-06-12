@@ -9,6 +9,7 @@ export default class ConfirmModal {
     window.addEventListener('keydown', event => this.onKeyDownClick(event));
     refs.confirmBtn.addEventListener('click', event => this.onConfirmOperation(event));
     refs.cancelBtn.addEventListener('click', event => this.onCancelOperation(event));
+    refs.confirmationModalOverlay.addEventListener('click', event => this.backdropClick(event));
     refs.confirmationModal.classList.add('modal-box--open');
   }
 

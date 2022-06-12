@@ -15,6 +15,7 @@ export default {
   countValue: document.querySelectorAll('.count-value'),
   //vertical todo modal
   confirmationModal: document.querySelector('.modal-box'),
+  confirmationModalOverlay: document.querySelector('.modal-box__overlay'),
   removeAllBtn: document.querySelector('[data-action="removeAll"]'),
   confirmBtn: document.querySelector('[data-action="confirm"]'),
   cancelBtn: document.querySelector('[data-action="cancel"]'),
