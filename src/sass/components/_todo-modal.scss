@@ -70,6 +70,11 @@
   color: $modal-select-color;
   height: $modal-select-height;
   margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.select-field {
+  border-radius: 5px;
 }
 
 .select-styled {
@@ -83,6 +88,7 @@
   background-color: $modal-select-background;
   padding: 8px 15px;
   transition: all 0.2s ease-in;
+  border-radius: 5px;
   &:after {
     content: '';
     width: 0;
@@ -161,6 +167,7 @@
   color: white;
   padding: 10px;
   transition: all 0.2s ease-in;
+  border-radius: 5px;
 }
 
 .form-content {
@@ -172,6 +179,7 @@
   resize: none;
   margin-bottom: 20px;
   transition: all 0.2s ease-in;
+  border-radius: 5px;
 }
 
 .form-submit-button {
@@ -179,6 +187,11 @@
   border: none;
   background-color: $modal-input-background;
   color: white;
+  border-radius: 5px;
+  &:focus,
+  &:hover {
+    background-color: #235f85;
+  }
 }
 
 .is-empty {
